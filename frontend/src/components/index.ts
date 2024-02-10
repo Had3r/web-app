@@ -1,3 +1,7 @@
-export * from './AccountForm'
-export * from './AccountsTable'
-export * from './Dashboard'
+// PAGES
+export * from './pages/AccountForm'
+export * from './pages/AccountsTable'
+export * from './pages/Dashboard'
+
+// UI components
+export * from './ui/Section'
