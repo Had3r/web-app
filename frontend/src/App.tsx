@@ -1,5 +1,5 @@
-import { Dashboard, AccountForm, AccountsTable } from "./components";
-import { BrowserRouter as Router, Route, Routes } from 'react-router-dom';
+import { Dashboard, AccountForm, AccountsTable } from './components'
+import { BrowserRouter as Router, Route, Routes } from 'react-router-dom'
 
 function App() {
   return (
@@ -11,7 +11,7 @@ function App() {
         <Route path="/view-accounts" element={<AccountsTable />} />
       </Routes>
     </Router>
-  );
+  )
 }
 
-export default App;
+export default App

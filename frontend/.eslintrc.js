@@ -7,7 +7,8 @@ module.exports = {
         "plugin:react-hooks/recommended",
     ],
     rules: {
-        "react/react-in-jsx-scope": "off"
+        "react/react-in-jsx-scope": "off",
+        "arrow-body-style": ["error", "as-needed"],
     },
     overrides: [],
 };
