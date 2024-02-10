@@ -1,10 +1,16 @@
+import { Dashboard, AccountForm, AccountsTable } from "./components";
+import { BrowserRouter as Router, Route, Routes } from 'react-router-dom';
+
 function App() {
   return (
-    <div className="App">
-      <h1 className="text-3xl font-bold text-red-500 underline">
-        Hello world!
-      </h1>
-    </div>
+    <Router>
+      <Routes>
+        <Route path="/" element={<Dashboard />} />
+        <Route path="/create-account" element={<AccountForm />} />
+        <Route path="/edit-account/:id" element={<AccountForm />} />
+        <Route path="/view-accounts" element={<AccountsTable />} />
+      </Routes>
+    </Router>
   );
 }
 
