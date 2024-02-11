@@ -3,7 +3,7 @@ import { API_URL } from '../config'
 interface AccountData {
   ownerId: string
   currency: string
-  balance: string
+  balance: number
 }
 
 export async function updateAccountByOwnerId(

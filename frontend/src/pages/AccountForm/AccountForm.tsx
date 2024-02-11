@@ -11,7 +11,7 @@ export const AccountForm = () => {
   const [formData, setFormData] = useState({
     ownerId: '',
     currency: '',
-    balance: '',
+    balance: 0,
   })
 
   const handleChange = (

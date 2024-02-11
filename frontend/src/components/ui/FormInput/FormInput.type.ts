@@ -1,7 +1,7 @@
 import { ChangeEvent } from 'react'
 
 export interface FormInputProps {
-  value: string
+  value: string | number
   name?: string
   id: string
   tag?: string
