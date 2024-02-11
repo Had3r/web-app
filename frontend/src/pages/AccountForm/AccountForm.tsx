@@ -17,12 +17,19 @@ export const AccountForm = () => {
     balance: 0,
   });
   const [ownerExists, setOwnerExists] = useState(false);
-  // Add state for errors
   const [formErrors, setFormErrors] = useState({
     ownerId: '',
     currency: '',
     balance: '',
   });
+
+  const resetForm = () => {
+    setFormData({
+      ownerId: -1,
+      currency: '',
+      balance: 0,
+    });
+  };
 
   useEffect(() => {
     const checkOwner = async () => {
@@ -52,45 +59,59 @@ export const AccountForm = () => {
     setFormData((prevState) => ({ ...prevState, [id]: convertedValue }));
   };
 
-  const handleSubmit = async (event: React.FormEvent<HTMLFormElement>) => {
-    event.preventDefault();
-
+  const validateFormData = (formData: {
+    ownerId: number;
+    currency: string;
+    balance: number;
+  }) => {
     const { ownerId, currency, balance } = formData;
-
-    // Reset errors before validation
-    setFormErrors({ ownerId: '', currency: '', balance: '' });
-
-    // Validation for all fields
-    const newErrors = {
+    return {
       ownerId:
         ownerId > 0 ? '' : 'Owner ID is required and must be greater than 0.',
       currency: currency ? '' : 'Currency is required.',
       balance: balance !== null && balance !== 0 ? '' : 'Balance is required.',
     };
+  };
 
+  const hasFormErrors = (errors: Record<string, string>) =>
+    Object.values(errors).some((error) => error !== '');
+
+  const saveFormData = async (
+    formData: { ownerId: number; currency: string; balance: number },
+    id: string | undefined,
+    ownerExists: boolean
+  ) => {
+    const { ownerId, currency, balance } = formData;
+    if (ownerExists) {
+      await updateAccountByOwnerId(
+        { id: id ?? null, ownerId, currency, balance },
+        ownerId
+      );
+      alert('Account updated successfully!');
+    } else {
+      await createAccount({ ownerId, currency, balance });
+      alert('Account created successfully!');
+    }
+  };
+
+  const handleSubmit = async (event: React.FormEvent<HTMLFormElement>) => {
+    event.preventDefault();
+
+    // Reset errors before validation
+    setFormErrors({ ownerId: '', currency: '', balance: '' });
+
+    // Validation for all fields
+    const newErrors = validateFormData(formData);
     setFormErrors(newErrors);
 
     // Check if there are any errors
-    const hasErrors = Object.values(newErrors).some((error) => error !== '');
-
-    if (hasErrors) {
+    if (hasFormErrors(newErrors)) {
       return;
     }
 
     try {
-      // Separate logic for creation and update
-      if (ownerExists) {
-        // Update existing account
-        await updateAccountByOwnerId(
-          { id: id ?? null, ownerId, currency, balance },
-          ownerId
-        );
-        alert('Account updated successfully!');
-      } else {
-        // Create new account
-        await createAccount({ ownerId, currency, balance });
-        alert('Account created successfully!');
-      }
+      await saveFormData(formData, id, ownerExists);
+      resetForm();
     } catch (error) {
       console.error('Error submitting the form:', error);
       alert('Failed to submit the form. Please try again.');
@@ -102,15 +123,14 @@ export const AccountForm = () => {
       className="mx-auto max-w-[600px] flex flex-col gap-6"
       onSubmit={handleSubmit}
     >
-      <div className={`text-${ownerExists ? 'green' : 'blue'}-500`}>
-        {ownerExists ? 'Edit account data.' : 'Create new account.'}
-      </div>
+      <div>{ownerExists ? 'Edit account data.' : 'Create new account.'}</div>
       <FormInput
         label="Owner ID:"
         value={formData.ownerId > 0 ? formData.ownerId : ''}
         id="ownerId"
         placeholder="Enter owner ID"
         type="number"
+        min="1"
         onChange={handleChange}
         error={formErrors.ownerId}
       />
@@ -128,6 +148,7 @@ export const AccountForm = () => {
         id="balance"
         placeholder="Enter balance"
         type="number"
+        min="1"
         onChange={handleChange}
         error={formErrors.balance}
       />

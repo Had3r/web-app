@@ -1,3 +1,22 @@
 {
-  "accounts": []
+  "accounts": [
+    {
+      "id": "591d",
+      "ownerId": 123,
+      "currency": "GBP",
+      "balance": 321
+    },
+    {
+      "id": "e81c",
+      "ownerId": 123,
+      "currency": "GBP",
+      "balance": 312
+    },
+    {
+      "id": "8907",
+      "ownerId": 3123,
+      "currency": "GBP",
+      "balance": 123
+    }
+  ]
 }

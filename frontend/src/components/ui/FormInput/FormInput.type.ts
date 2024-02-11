@@ -11,6 +11,7 @@ export interface FormInputProps {
   disabled?: boolean;
   isRequired?: boolean;
   placeholder?: string;
+  min?: string;
   onChange?: (
     e: ChangeEvent<HTMLInputElement> | ChangeEvent<HTMLTextAreaElement>
   ) => void;
