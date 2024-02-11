@@ -18,14 +18,13 @@
     "web-vitals": "^2.1.0"
   },
   "scripts": {
-    "start": "react-scripts start",
-    "build": "react-scripts build",
+    "start": "craco start",
+    "build": "craco build",
     "eject": "react-scripts eject",
     "lint": "eslint src --ext .js,.jsx,.ts,.tsx",
     "format": "prettier --write \"src/**/*.{js,jsx,ts,tsx,css,scss,json}\"",
-    "test:coverage": "react-scripts test --coverage",
-    "start:lint": "npm run lint && npm run format && react-scripts start",
-    "build:lint": "npm run lint && react-scripts build"
+    "start:lint": "npm run lint && npm run format && craco start",
+    "build:lint": "npm run lint && craco build"
   },
   "lint-staged": {
     "*.{js,jsx,ts,tsx}": "eslint --cache --fix",
@@ -50,13 +49,16 @@
     ]
   },
   "devDependencies": {
+    "@craco/craco": "^7.1.0",
     "eslint": "^8.56.0",
+    "eslint-plugin-import": "^2.29.1",
     "eslint-plugin-jsx-a11y": "^6.8.0",
     "eslint-plugin-prettier": "^5.1.3",
     "eslint-plugin-react": "^7.33.2",
     "eslint-plugin-react-hooks": "^4.6.0",
     "lint-staged": "^15.2.2",
     "prettier": "^3.2.5",
+    "tailwind-merge": "^2.2.1",
     "tailwindcss": "^3.4.1"
   }
 }
