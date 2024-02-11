@@ -1,6 +1,4 @@
-import React from 'react'
-
-export const Footer: React.FC = () => (
+export const Footer = () => (
   <footer
     style={{
       textAlign: 'center',

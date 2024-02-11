@@ -1,6 +1,8 @@
 import React from 'react'
 
-import { Header, Footer } from '../../components/common'
+import { Footer, Header } from '@common/'
+
+// TODO: check https://dev.to/marcosdiasdev/using-path-aliases-on-create-react-app-projects-686
 
 interface MainLayoutProps {
   children: React.ReactNode

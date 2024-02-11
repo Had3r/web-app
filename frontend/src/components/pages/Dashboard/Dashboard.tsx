@@ -1,6 +1,5 @@
+import { Container } from '@ui/'
 import { Link } from 'react-router-dom'
-
-import { Container } from '../../ui'
 
 export const Dashboard = () => (
   <Container>

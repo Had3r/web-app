@@ -1,5 +1,6 @@
-import type { ContainerProps } from './Container.type'
 import { twMerge } from 'tailwind-merge'
+
+import type { ContainerProps } from './Container.type'
 
 export const Container = ({
   children,

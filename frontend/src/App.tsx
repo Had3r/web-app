@@ -1,6 +1,6 @@
-import { Dashboard, AccountForm, AccountsTable } from './components'
+import { MainLayout } from '@layouts/'
+import { Dashboard, AccountForm, AccountsTable } from '@pages/'
 import { BrowserRouter as Router, Route, Routes } from 'react-router-dom'
-import { MainLayout } from './layouts'
 
 function App() {
   return (

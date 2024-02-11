@@ -1,6 +1,4 @@
-import React from 'react'
-
-export const Header: React.FC = () => (
+export const Header = () => (
   <header
     style={{
       backgroundColor: '#f0f0f0',
