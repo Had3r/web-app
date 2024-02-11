@@ -1,20 +1,20 @@
-import { API_URL } from '../config'
+import { API_URL } from '../config';
 
 interface AccountData {
-  id: string | null
-  ownerId: string
-  currency: string
-  balance: number
+  id: string | null;
+  ownerId: number;
+  currency: string;
+  balance: number;
 }
 
 export async function updateAccountByOwnerId(
   accountData: AccountData,
-  ownerId: string
+  ownerId: number
 ): Promise<void> {
   try {
     const url = accountData.id
       ? `${API_URL}/accounts/${accountData.id}`
-      : `${API_URL}/accounts/${ownerId}`
+      : `${API_URL}/accounts/${ownerId}`;
 
     const response = await fetch(url, {
       method: 'PATCH', // Lub 'PUT', w zależności od wymagań API
@@ -22,16 +22,16 @@ export async function updateAccountByOwnerId(
         'Content-Type': 'application/json',
       },
       body: JSON.stringify(accountData),
-    })
+    });
 
     if (!response.ok) {
-      throw new Error('Failed to update account')
+      throw new Error('Failed to update account');
     }
 
     // Opcjonalnie: obsługa odpowiedzi, np. wyświetlenie komunikatu o sukcesie
-    console.log('Account updated successfully')
+    console.log('Account updated successfully');
   } catch (error) {
-    console.error('Error updating account:', error)
-    throw error
+    console.error('Error updating account:', error);
+    throw error;
   }
 }

@@ -1,1 +1,1 @@
-export * from './updateAccountByOwnerId'
+export * from './updateAccountByOwnerId';

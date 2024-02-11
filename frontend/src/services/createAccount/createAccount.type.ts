@@ -1,5 +1,5 @@
 export interface AccountData {
-  ownerId: string
-  currency: string
-  balance: number
+  ownerId: number;
+  currency: string;
+  balance: number;
 }

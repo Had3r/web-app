@@ -8,4 +8,4 @@ export const Header = () => (
   >
     <h1>Bank Accounts Management</h1>
   </header>
-)
+);

@@ -1,13 +1,13 @@
-import { twMerge } from 'tailwind-merge'
+import { twMerge } from 'tailwind-merge';
 
-import type { ContainerProps } from './Container.type'
+import type { ContainerProps } from './Container.type';
 
 export const Container = ({
   children,
   component,
   className,
 }: ContainerProps) => {
-  const DynamicComponent = component ?? 'section'
+  const DynamicComponent = component ?? 'section';
 
   return (
     <DynamicComponent
@@ -15,5 +15,5 @@ export const Container = ({
     >
       {children}
     </DynamicComponent>
-  )
-}
+  );
+};

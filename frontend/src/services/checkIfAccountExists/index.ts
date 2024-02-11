@@ -1,1 +1,1 @@
-export * from './checkIfAccountExists'
+export * from './checkIfAccountExists';

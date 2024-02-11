@@ -1,58 +1,80 @@
-import React, { useState, useEffect } from 'react'
+import React, { useState, useEffect } from 'react';
 
-import { FormInput, Button } from '@components/ui'
+import { FormInput, Button } from '@components/ui';
 import {
   checkIfAccountExists,
   createAccount,
   updateAccountByOwnerId,
-} from '@services/'
-import { useParams } from 'react-router-dom'
+} from '@services/';
+import { useParams } from 'react-router-dom';
 
 export const AccountForm = () => {
-  const { id } = useParams<{ id: string }>()
+  const { id } = useParams<{ id: string }>();
 
   const [formData, setFormData] = useState({
-    id: null,
-    ownerId: '',
+    ownerId: -1,
     currency: '',
     balance: 0,
-  })
-  const [ownerExists, setOwnerExists] = useState(false)
+  });
+  const [ownerExists, setOwnerExists] = useState(false);
+  // Add state for errors
+  const [formErrors, setFormErrors] = useState({
+    ownerId: '',
+    currency: '',
+    balance: '',
+  });
 
   useEffect(() => {
     const checkOwner = async () => {
       if (id) {
-        const exists = await checkIfAccountExists(id)
-        setOwnerExists(exists)
+        const exists = await checkIfAccountExists(id);
+        setOwnerExists(exists);
         if (exists) {
           // Add logic to fill the form with data from the existing account
         }
       }
-    }
+    };
 
-    checkOwner()
-  }, [id])
+    checkOwner();
+  }, [id]);
 
   const handleChange = (
     e:
       | React.ChangeEvent<HTMLInputElement>
       | React.ChangeEvent<HTMLTextAreaElement>
   ) => {
-    const target = e.target
-    const { id, value } = target
+    const target = e.target;
+    const { id, value } = target;
 
-    setFormData((prevState) => ({ ...prevState, [id]: value }))
-  }
+    const isNumberField = target.type === 'number';
+    const convertedValue = isNumberField ? Number(value) : value;
+
+    setFormData((prevState) => ({ ...prevState, [id]: convertedValue }));
+  };
 
   const handleSubmit = async (event: React.FormEvent<HTMLFormElement>) => {
-    event.preventDefault()
+    event.preventDefault();
 
-    const { id, ownerId, currency, balance } = formData
+    const { ownerId, currency, balance } = formData;
 
-    // Early return if ownerId is not provided
-    if (!ownerId) {
-      alert('Owner ID is required.')
-      return
+    // Reset errors before validation
+    setFormErrors({ ownerId: '', currency: '', balance: '' });
+
+    // Validation for all fields
+    const newErrors = {
+      ownerId:
+        ownerId > 0 ? '' : 'Owner ID is required and must be greater than 0.',
+      currency: currency ? '' : 'Currency is required.',
+      balance: balance !== null && balance !== 0 ? '' : 'Balance is required.',
+    };
+
+    setFormErrors(newErrors);
+
+    // Check if there are any errors
+    const hasErrors = Object.values(newErrors).some((error) => error !== '');
+
+    if (hasErrors) {
+      return;
     }
 
     try {
@@ -60,20 +82,20 @@ export const AccountForm = () => {
       if (ownerExists) {
         // Update existing account
         await updateAccountByOwnerId(
-          { id, ownerId, currency, balance: Number(balance) },
+          { id: id ?? null, ownerId, currency, balance },
           ownerId
-        )
-        alert('Account updated successfully!')
+        );
+        alert('Account updated successfully!');
       } else {
         // Create new account
-        await createAccount({ ownerId, currency, balance: Number(balance) })
-        alert('Account created successfully!')
+        await createAccount({ ownerId, currency, balance });
+        alert('Account created successfully!');
       }
     } catch (error) {
-      console.error('Error submitting the form:', error)
-      alert('Failed to submit the form. Please try again.')
+      console.error('Error submitting the form:', error);
+      alert('Failed to submit the form. Please try again.');
     }
-  }
+  };
 
   return (
     <form
@@ -85,10 +107,12 @@ export const AccountForm = () => {
       </div>
       <FormInput
         label="Owner ID:"
-        value={formData.ownerId}
+        value={formData.ownerId > 0 ? formData.ownerId : ''}
         id="ownerId"
         placeholder="Enter owner ID"
+        type="number"
         onChange={handleChange}
+        error={formErrors.ownerId}
       />
       <FormInput
         label="Currency:"
@@ -96,6 +120,7 @@ export const AccountForm = () => {
         id="currency"
         placeholder="Enter currency"
         onChange={handleChange}
+        error={formErrors.currency}
       />
       <FormInput
         label="Balance:"
@@ -104,11 +129,12 @@ export const AccountForm = () => {
         placeholder="Enter balance"
         type="number"
         onChange={handleChange}
+        error={formErrors.balance}
       />
 
       <Button className="mt-12" type="submit">
         Save
       </Button>
     </form>
-  )
-}
+  );
+};

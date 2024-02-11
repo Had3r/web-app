@@ -1,16 +1,3 @@
 {
-  "accounts": [
-    {
-      "id": "1",
-      "ownerId": "123",
-      "currency": "USD",
-      "balance": 1000
-    },
-    {
-      "id": "2",
-      "ownerId": "456",
-      "currency": "EUR",
-      "balance": 1500
-    }
-  ]
+  "accounts": []
 }

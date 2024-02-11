@@ -9,4 +9,4 @@ export const Footer = () => (
   >
     <p>© 2023 BankApp. All rights reserved.</p>
   </footer>
-)
+);

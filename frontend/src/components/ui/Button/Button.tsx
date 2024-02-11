@@ -1,6 +1,6 @@
-import { twMerge } from 'tailwind-merge'
+import { twMerge } from 'tailwind-merge';
 
-import type { ButtonProps } from './Button.type'
+import type { ButtonProps } from './Button.type';
 
 export const Button = ({
   className,
@@ -15,4 +15,4 @@ export const Button = ({
   >
     {children}
   </button>
-)
+);
