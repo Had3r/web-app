@@ -1,10 +1,5 @@
+import type { AccountData } from './createAccount.type'
 import { API_URL } from '../config'
-
-interface AccountData {
-  ownerId: string
-  currency: string
-  balance: number
-}
 
 export async function createAccount(accountData: AccountData): Promise<void> {
   try {

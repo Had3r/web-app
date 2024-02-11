@@ -6,6 +6,6 @@ export const Header = () => (
       textAlign: 'center',
     }}
   >
-    <h1>App name</h1>
+    <h1>Bank Accounts Management</h1>
   </header>
 )

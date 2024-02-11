@@ -1,6 +1,7 @@
 import { API_URL } from '../config'
 
 interface AccountData {
+  id: string | null
   ownerId: string
   currency: string
   balance: number
@@ -11,7 +12,11 @@ export async function updateAccountByOwnerId(
   ownerId: string
 ): Promise<void> {
   try {
-    const response = await fetch(`${API_URL}/accounts/${ownerId}`, {
+    const url = accountData.id
+      ? `${API_URL}/accounts/${accountData.id}`
+      : `${API_URL}/accounts/${ownerId}`
+
+    const response = await fetch(url, {
       method: 'PATCH', // Lub 'PUT', w zależności od wymagań API
       headers: {
         'Content-Type': 'application/json',
