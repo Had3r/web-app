@@ -5,6 +5,7 @@ import {
   checkIfAccountExists,
   createAccount,
   updateAccountByOwnerId,
+  getAccountById,
 } from '@services/';
 import { useParams } from 'react-router-dom';
 
@@ -37,7 +38,12 @@ export const AccountForm = () => {
         const exists = await checkIfAccountExists(id);
         setOwnerExists(exists);
         if (exists) {
-          // Add logic to fill the form with data from the existing account
+          const accountData = await getAccountById(id);
+          setFormData({
+            ownerId: accountData.ownerId,
+            currency: accountData.currency,
+            balance: accountData.balance,
+          });
         }
       }
     };
