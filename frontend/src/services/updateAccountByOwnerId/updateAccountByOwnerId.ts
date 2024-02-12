@@ -17,7 +17,7 @@ export async function updateAccountByOwnerId(
       : `${API_URL}/accounts/${ownerId}`;
 
     const response = await fetch(url, {
-      method: 'PATCH', // Lub 'PUT', w zależności od wymagań API
+      method: 'PATCH',
       headers: {
         'Content-Type': 'application/json',
       },
@@ -28,7 +28,6 @@ export async function updateAccountByOwnerId(
       throw new Error('Failed to update account');
     }
 
-    // Opcjonalnie: obsługa odpowiedzi, np. wyświetlenie komunikatu o sukcesie
     console.log('Account updated successfully');
   } catch (error) {
     console.error('Error updating account:', error);

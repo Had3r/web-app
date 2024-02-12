@@ -15,7 +15,6 @@ export async function createAccount(accountData: AccountData): Promise<void> {
       throw new Error('Failed to create account');
     }
 
-    // Opcjonalnie: obsługa odpowiedzi, np. wyświetlenie komunikatu o sukcesie
     console.log('Account created successfully');
   } catch (error) {
     console.error('Error creating account:', error);
