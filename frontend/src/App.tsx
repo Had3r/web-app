@@ -1,6 +1,6 @@
-import { MainLayout } from '@layouts/'
-import { Dashboard, AccountForm, AccountsTable } from '@pages/'
-import { BrowserRouter as Router, Route, Routes } from 'react-router-dom'
+import { MainLayout } from '@components/layouts';
+import { Dashboard, AccountForm, AccountsTable } from 'pages';
+import { BrowserRouter as Router, Route, Routes } from 'react-router-dom';
 
 function App() {
   return (
@@ -14,7 +14,7 @@ function App() {
         </Routes>
       </MainLayout>
     </Router>
-  )
+  );
 }
 
-export default App
+export default App;
