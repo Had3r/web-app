@@ -4,112 +4,112 @@
       "id": "1",
       "ownerId": 1,
       "currency": "GBP",
-      "balance": 314,
+      "balance": 3000,
       "type": "personal"
     },
     {
       "id": "2",
       "ownerId": 2,
       "currency": "GBP",
-      "balance": 123,
+      "balance": 2900,
       "type": "savings"
     },
     {
       "id": "3",
       "ownerId": 3,
       "currency": "GBP",
-      "balance": 314,
+      "balance": 3100,
       "type": "business"
     },
     {
       "id": "4",
       "ownerId": 4,
       "currency": "PLN",
-      "balance": 12312,
+      "balance": 3000,
       "type": "personal"
     },
     {
       "id": "5",
       "ownerId": 5,
       "currency": "PLN",
-      "balance": 3123123,
+      "balance": 2900,
       "type": "savings"
     },
     {
       "id": "6",
       "ownerId": 6,
       "currency": "PLN",
-      "balance": 1231,
+      "balance": 3100,
       "type": "business"
     },
     {
       "id": "7",
       "ownerId": 7,
       "currency": "PLN",
-      "balance": 123,
+      "balance": 3000,
       "type": "personal"
     },
     {
       "id": "8",
       "ownerId": 8,
       "currency": "PLN",
-      "balance": 123,
+      "balance": 2900,
       "type": "savings"
     },
     {
       "id": "9",
       "ownerId": 9,
       "currency": "PLN",
-      "balance": 123,
+      "balance": 3100,
       "type": "business"
     },
     {
       "id": "10",
       "ownerId": 10,
       "currency": "USD",
-      "balance": 5000,
+      "balance": 3000,
       "type": "personal"
     },
     {
       "id": "11",
       "ownerId": 11,
       "currency": "EUR",
-      "balance": 2600,
+      "balance": 2900,
       "type": "savings"
     },
     {
       "id": "12",
       "ownerId": 12,
       "currency": "JPY",
-      "balance": 100000,
+      "balance": 3100,
       "type": "business"
     },
     {
       "id": "13",
       "ownerId": 13,
       "currency": "CNY",
-      "balance": 20000,
+      "balance": 3000,
       "type": "personal"
     },
     {
       "id": "14",
       "ownerId": 14,
       "currency": "INR",
-      "balance": 150000,
+      "balance": 2900,
       "type": "savings"
     },
     {
       "id": "15",
       "ownerId": 15,
       "currency": "BRL",
-      "balance": 7500,
+      "balance": 3100,
       "type": "business"
     },
     {
       "id": "16",
       "ownerId": 16,
       "currency": "RUB",
-      "balance": 48000,
+      "balance": 3000,
       "type": "personal"
     }
   ]

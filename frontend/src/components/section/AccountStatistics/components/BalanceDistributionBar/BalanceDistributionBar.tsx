@@ -1,10 +1,8 @@
 import React, { useEffect, useState } from 'react';
 
-import { Chart, BarElement, CategoryScale, LinearScale } from 'chart.js'; // Register the elements
 import { Bar } from 'react-chartjs-2';
 
-import { Account } from '../../AccountStatistics'; // Import the necessary elements
-Chart.register(BarElement, CategoryScale, LinearScale); // Let's assume the Account type was exported from the original component
+import { Account } from '../../AccountStatistics';
 
 interface Props {
   accounts: Account[];
@@ -75,5 +73,16 @@ export const BalanceDistributionBar: React.FC<Props> = ({ accounts }) => {
     });
   }, [accounts]);
 
-  return <Bar data={balanceDistribution} />;
+  return (
+    <Bar
+      data={balanceDistribution}
+      options={{
+        plugins: {
+          legend: {
+            display: false,
+          },
+        },
+      }}
+    />
+  );
 };

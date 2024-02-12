@@ -1,10 +1,8 @@
 import React, { useEffect, useState } from 'react';
 
-import { Chart, ArcElement } from 'chart.js';
 import { Pie } from 'react-chartjs-2';
 
 import { Account } from '../../AccountStatistics';
-Chart.register(ArcElement);
 
 interface Props {
   accounts: Account[];
