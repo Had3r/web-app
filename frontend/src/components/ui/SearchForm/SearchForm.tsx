@@ -17,6 +17,14 @@ export const SearchForm = ({ onSearch, className }: SearchFormProps) => {
     onSearch(searchParams);
   };
 
+  const handleReset = () => {
+    setSearchParams({ ownerId: '', currency: '' });
+    onSearch({ ownerId: '', currency: '' });
+  };
+
+  const isFormEmpty =
+    searchParams.ownerId === '' && searchParams.currency === '';
+
   return (
     <form
       onSubmit={handleSubmit}
@@ -45,8 +53,17 @@ export const SearchForm = ({ onSearch, className }: SearchFormProps) => {
           setSearchParams({ ...searchParams, currency: e.target.value })
         }
       />
-      <Button type="submit" className="mt-2">
+      <Button type="submit" className="mt-2 md:mt-0">
         Search
+      </Button>
+      <Button
+        variant="secondary"
+        type="button"
+        className="mt-2 md:mt-0"
+        onClick={handleReset}
+        disabled={isFormEmpty}
+      >
+        Reset
       </Button>
     </form>
   );
