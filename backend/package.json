@@ -4,14 +4,14 @@
   "description": "",
   "main": "index.js",
   "scripts": {
-    "start": "json-server --watch db.json --port 3001",
+    "start": "node server.js",
     "start:dev": "nodemon --exec 'json-server --watch db.json --port 3001'"
   },
   "keywords": [],
   "author": "Adrian Zawadzki",
   "license": "ISC",
   "dependencies": {
-    "json-server": "^1.0.0-alpha.23"
+    "json-server": "^0.17.4"
   },
   "devDependencies": {
     "nodemon": "^3.0.3"

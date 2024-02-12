@@ -1,5 +1,5 @@
 import { MainLayout } from '@components/layouts';
-import { Dashboard, AccountForm, AccountsTable } from 'pages';
+import { Dashboard, AccountForm, AccountsTable, AccountSuccess } from 'pages'; // Import the new component
 import { BrowserRouter as Router, Route, Routes } from 'react-router-dom';
 
 function App() {
@@ -11,6 +11,7 @@ function App() {
           <Route path="/create-account" element={<AccountForm />} />
           <Route path="/edit-account/:id" element={<AccountForm />} />
           <Route path="/view-accounts" element={<AccountsTable />} />
+          <Route path="/account-success" element={<AccountSuccess />} />
         </Routes>
       </MainLayout>
     </Router>
