@@ -1,8 +1,9 @@
-import React, { useState, useEffect } from 'react';
+import { useState, useEffect } from 'react';
 
-import { Link } from 'react-router-dom';
+import { ImageWithGradient } from '@components/section';
+import { Sidebar } from '@components/shell';
+import { FaUsers, FaWallet } from 'react-icons/fa';
 import { fetchAccounts } from 'services/fetchAccounts';
-
 export const Dashboard = () => {
   const [totalAccounts, setTotalAccounts] = useState(0);
   const [totalBalance, setTotalBalance] = useState(0);
@@ -26,27 +27,42 @@ export const Dashboard = () => {
   }, []);
 
   return (
-    <>
-      <h1 className="text-2xl font-bold text-gray-900">Dashboard</h1>
-      <div className="mt-4 p-4 rounded-lg shadow-md bg-white">
-        <p className="text-lg text-gray-700">
-          Total Accounts: <span className="font-semibold">{totalAccounts}</span>
-        </p>
-        <p className="text-lg text-gray-700">
-          Total Balance: <span className="font-semibold">{totalBalance}</span>
-        </p>
+    <div className="flex flex-col md:flex-row w-full">
+      <ImageWithGradient
+        img={{ src: 'https://placekitten.com/1600/900', alt: '' }}
+        className="md:hidden rounded-t-xl [&>*]:rounded-t-xl"
+        text="Welcome to Your Dashboard"
+      />
+      <Sidebar className=" md:basis-1/4 w-full" />
+      <div className=" md:basis-3/4">
+        <ImageWithGradient
+          img={{ src: 'https://placekitten.com/1600/900', alt: '' }}
+          className="hidden md:block rounded-tr-xl [&>*]:rounded-tr-xl"
+          text="Welcome to Your Dashboard"
+        />
+        <div className="mt-4 md:m-8 [&>*]:md:max-w-[330px] [&>*]:lg:min-w-[330px] grid grid-cols-1 md:grid-cols-2 gap-4 md:justify-items-center">
+          <div className="p-4 md:p-6 rounded-xl shadow-lg bg-gradient-to-r from-gray-500 to-gray-300 flex items-center space-x-4">
+            <div className="p-3 rounded-full bg-white bg-opacity-20">
+              <FaUsers className="text-xl text-white" />
+            </div>
+            <div>
+              <p className="text-md text-white">Total Accounts</p>
+              <p className="text-lg font-semibold text-white">
+                {totalAccounts}
+              </p>
+            </div>
+          </div>
+          <div className="p-4 md:p-6 rounded-xl shadow-lg bg-gradient-to-r from-gray-700 to-gray-500 flex items-center space-x-4">
+            <div className="p-3 rounded-full bg-white bg-opacity-20">
+              <FaWallet className="text-xl text-white" />
+            </div>
+            <div>
+              <p className="text-md text-white">Total Balance</p>
+              <p className="text-lg font-semibold text-white">{totalBalance}</p>
+            </div>
+          </div>
+        </div>
       </div>
-      <nav className="py-8 inline-flex flex-col gap-4">
-        <Link
-          to="/create-account"
-          className="text-blue-500 hover:text-blue-700"
-        >
-          Create Account
-        </Link>
-        <Link to="/view-accounts" className="text-blue-500 hover:text-blue-700">
-          View Accounts
-        </Link>
-      </nav>
-    </>
+    </div>
   );
 };

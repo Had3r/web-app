@@ -1,56 +1,8 @@
 {
   "accounts": [
     {
-      "id": "2",
-      "ownerId": 3123,
-      "currency": "GBP",
-      "balance": 123
-    },
-    {
       "id": "3",
       "ownerId": 1,
-      "currency": "GBP",
-      "balance": 314
-    },
-    {
-      "id": "4",
-      "ownerId": 2,
-      "currency": "GBP",
-      "balance": 123
-    },
-    {
-      "id": "6",
-      "ownerId": 5,
-      "currency": "GBP",
-      "balance": 123
-    },
-    {
-      "id": "7",
-      "ownerId": 6,
-      "currency": "GBP",
-      "balance": 314
-    },
-    {
-      "id": "8",
-      "ownerId": 7,
-      "currency": "GBP",
-      "balance": 123
-    },
-    {
-      "id": "9",
-      "ownerId": 8,
-      "currency": "GBP",
-      "balance": 314
-    },
-    {
-      "id": "10",
-      "ownerId": 9,
-      "currency": "GBP",
-      "balance": 123
-    },
-    {
-      "id": "11",
-      "ownerId": 10,
       "currency": "GBP",
       "balance": 314
     },
@@ -67,22 +19,10 @@
       "balance": 314
     },
     {
-      "id": "14",
-      "ownerId": 13,
-      "currency": "GBP",
-      "balance": 123
-    },
-    {
       "id": "15",
       "ownerId": 14,
       "currency": "PLN",
       "balance": 12312
-    },
-    {
-      "id": "KVwR8u4",
-      "ownerId": 15,
-      "currency": "PLN",
-      "balance": 123123
     },
     {
       "id": "ZIDUBi-",
@@ -179,12 +119,6 @@
       "ownerId": 31,
       "currency": "RUB",
       "balance": 48000
-    },
-    {
-      "id": "14cdef92",
-      "ownerId": 32,
-      "currency": "ZAR",
-      "balance": 12345
     },
     {
       "ownerId": 33312312312312,
