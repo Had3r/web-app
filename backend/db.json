@@ -1,12 +1,6 @@
 {
   "accounts": [
     {
-      "id": "1",
-      "ownerId": 33,
-      "currency": "GBP",
-      "balance": 314
-    },
-    {
       "id": "2",
       "ownerId": 3123,
       "currency": "GBP",
@@ -23,12 +17,6 @@
       "ownerId": 2,
       "currency": "GBP",
       "balance": 123
-    },
-    {
-      "id": "5",
-      "ownerId": 4,
-      "currency": "GBP",
-      "balance": 314
     },
     {
       "id": "6",

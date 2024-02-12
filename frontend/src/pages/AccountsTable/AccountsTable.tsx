@@ -1,6 +1,6 @@
 import { useState, useEffect } from 'react';
 
-import { SearchForm, Button } from '@components/ui';
+import { SearchForm, Button, Modal } from '@components/ui';
 import { fetchAccounts, deleteAccount } from '@services/';
 import { FaRegEdit } from 'react-icons/fa';
 import { FaArrowLeft, FaArrowRight } from 'react-icons/fa';
@@ -19,6 +19,8 @@ export const AccountsTable = () => {
   const [currentPage, setCurrentPage] = useState(1);
   const [totalPages, setTotalPages] = useState(0);
   const [filters, setFilters] = useState({});
+  const [isModalOpen, setIsModalOpen] = useState(false);
+  const [selectedOwnerId, setSelectedOwnerId] = useState<string | null>(null);
   const resultsPerPage = 8;
 
   useEffect(() => {
@@ -78,6 +80,27 @@ export const AccountsTable = () => {
     }
   };
 
+  const openDeleteModal = (ownerId: string) => {
+    setSelectedOwnerId(ownerId);
+    setIsModalOpen(true);
+  };
+
+  const closeModal = () => {
+    setIsModalOpen(false);
+  };
+
+  const confirmDelete = () => {
+    if (selectedOwnerId) {
+      const accountToDelete = accounts.find(
+        (account) => account.ownerId === selectedOwnerId
+      );
+      if (accountToDelete) {
+        handleDelete(accountToDelete.id);
+        setIsModalOpen(false);
+      }
+    }
+  };
+
   const handlePreviousPage = () =>
     setCurrentPage((prev) => Math.max(prev - 1, 1));
 
@@ -88,8 +111,7 @@ export const AccountsTable = () => {
     <div>
       <h1>Accounts</h1>
       <Link to="/">Back to Dashboard</Link>
-      <h2 className="mt-12">Search</h2>
-      <SearchForm className="mb-4 mt-2" onSearch={handleSearch} />
+      <SearchForm className="mb-4 mt-12" onSearch={handleSearch} />
       <div
         className="overflow-x-auto min-h-[calc()]"
         style={{ minHeight: `calc(${resultsPerPage} * 50px)` }}
@@ -129,7 +151,7 @@ export const AccountsTable = () => {
                   <td className="p-2 w-1/10">
                     <button
                       aria-label={`Delete account ${account.ownerId}`}
-                      onClick={() => handleDelete(account.id)}
+                      onClick={() => openDeleteModal(account.ownerId)}
                       className="text-red-500 hover:text-red-700"
                     >
                       <MdDeleteOutline />
@@ -141,6 +163,12 @@ export const AccountsTable = () => {
           </tbody>
         </table>
       </div>
+      <Modal
+        isOpen={isModalOpen}
+        onClose={closeModal}
+        onConfirm={confirmDelete}
+        ownerId={selectedOwnerId}
+      />
       {totalPages > 1 && (
         <div className="inline-flex gap-4 md:gap-6 w-full justify-center items-center mt-4">
           <Button

@@ -20,7 +20,7 @@ export const Button = ({
       type={type}
       disabled={disabled}
       className={twMerge(
-        'px-4 py-2 rounded-sm',
+        'px-4 py-2 rounded-sm outline-offset-2',
         variantStyles[variant],
         disabled ? 'opacity-50 cursor-not-allowed' : '',
         className
