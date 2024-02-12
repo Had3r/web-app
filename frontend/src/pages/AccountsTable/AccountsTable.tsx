@@ -50,32 +50,38 @@ export const AccountsTable = () => {
   }
 
   return (
-    <div>
+    <div className="overflow-x-auto">
       <h1>Accounts</h1>
       <Link to="/">Back to Dashboard</Link>
-      <table className="table-auto w-full border">
-        <thead>
+      <table className="table-auto w-full border border-gray-300">
+        <thead className="bg-gray-100">
           <tr>
-            <th>Owner ID</th>
-            <th>Currency</th>
-            <th>Balance</th>
-            <th>Edit</th>
-            <th>Delete</th>
+            <th className="p-2 text-left w-1/5">Owner ID</th>
+            <th className="p-2 text-left w-1/5">Currency</th>
+            <th className="p-2 text-left w-2/5">Balance</th>
+            <th className="p-2 text-left w-1/10">Edit</th>
+            <th className="p-2 text-left w-1/10">Delete</th>
           </tr>
         </thead>
-        <tbody className="border">
+        <tbody className="border-t border-gray-300">
           {accounts.map((account) => (
-            <tr className="[&>*]:p-2" key={account.id}>
-              <td>{account.ownerId}</td>
-              <td>{account.currency}</td>
-              <td>{account.balance}</td>
-              <td>
-                <Link to={`/edit-account/${account.id}`}>
+            <tr key={account.id} className="hover:bg-gray-50">
+              <td className="p-2 w-1/5">{account.ownerId}</td>
+              <td className="p-2 w-1/5">{account.currency}</td>
+              <td className="p-2 w-2/5">{account.balance}</td>
+              <td className="p-2 w-1/10">
+                <Link
+                  to={`/edit-account/${account.id}`}
+                  className="text-blue-500 hover:text-blue-700"
+                >
                   <FaRegEdit />
                 </Link>
               </td>
-              <td>
-                <button onClick={() => deleteAccount(account.id)}>
+              <td className="p-2 w-1/10">
+                <button
+                  onClick={() => deleteAccount(account.id)}
+                  className="text-red-500 hover:text-red-700"
+                >
                   <MdDeleteOutline />
                 </button>
               </td>

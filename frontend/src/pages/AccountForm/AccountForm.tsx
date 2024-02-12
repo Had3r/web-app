@@ -117,7 +117,10 @@ export const AccountForm = () => {
 
     try {
       await saveFormData(formData, id, ownerExists);
-      resetForm();
+      // Reset form only if creating a new account
+      if (!ownerExists) {
+        resetForm();
+      }
     } catch (error) {
       console.error('Error submitting the form:', error);
       alert('Failed to submit the form. Please try again.');

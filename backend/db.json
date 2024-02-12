@@ -2,9 +2,9 @@
   "accounts": [
     {
       "id": "e81c",
-      "ownerId": 33333,
+      "ownerId": 333331,
       "currency": "GBP",
-      "balance": 312
+      "balance": 314
     },
     {
       "id": "8907",
@@ -16,6 +16,12 @@
       "id": "8f0e",
       "ownerId": 334234,
       "currency": "GBP",
+      "balance": 123
+    },
+    {
+      "id": "bd78",
+      "ownerId": 123,
+      "currency": "PLN",
       "balance": 123
     }
   ]
