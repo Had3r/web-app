@@ -15,7 +15,7 @@ export const Sidebar = ({ className }: SidebarProps) => (
   >
     <div className="p-5 text-xl font-semibold border-b border-gray-600 flex gap-2 items-center">
       <MdOutlineSettingsApplications />
-      Finance Hub
+      Dashboard
     </div>
     <ul className="flex flex-col p-2 ">
       <li>
