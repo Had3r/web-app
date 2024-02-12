@@ -1,154 +1,116 @@
 {
   "accounts": [
     {
-      "id": "3",
+      "id": "1",
       "ownerId": 1,
       "currency": "GBP",
-      "balance": 314
+      "balance": 314,
+      "type": "personal"
+    },
+    {
+      "id": "2",
+      "ownerId": 2,
+      "currency": "GBP",
+      "balance": 123,
+      "type": "savings"
+    },
+    {
+      "id": "3",
+      "ownerId": 3,
+      "currency": "GBP",
+      "balance": 314,
+      "type": "business"
+    },
+    {
+      "id": "4",
+      "ownerId": 4,
+      "currency": "PLN",
+      "balance": 12312,
+      "type": "personal"
+    },
+    {
+      "id": "5",
+      "ownerId": 5,
+      "currency": "PLN",
+      "balance": 3123123,
+      "type": "savings"
+    },
+    {
+      "id": "6",
+      "ownerId": 6,
+      "currency": "PLN",
+      "balance": 1231,
+      "type": "business"
+    },
+    {
+      "id": "7",
+      "ownerId": 7,
+      "currency": "PLN",
+      "balance": 123,
+      "type": "personal"
+    },
+    {
+      "id": "8",
+      "ownerId": 8,
+      "currency": "PLN",
+      "balance": 123,
+      "type": "savings"
+    },
+    {
+      "id": "9",
+      "ownerId": 9,
+      "currency": "PLN",
+      "balance": 123,
+      "type": "business"
+    },
+    {
+      "id": "10",
+      "ownerId": 10,
+      "currency": "USD",
+      "balance": 5000,
+      "type": "personal"
+    },
+    {
+      "id": "11",
+      "ownerId": 11,
+      "currency": "EUR",
+      "balance": 2600,
+      "type": "savings"
     },
     {
       "id": "12",
-      "ownerId": 11,
-      "currency": "GBP",
-      "balance": 123
+      "ownerId": 12,
+      "currency": "JPY",
+      "balance": 100000,
+      "type": "business"
     },
     {
       "id": "13",
-      "ownerId": 12,
-      "currency": "GBP",
-      "balance": 314
+      "ownerId": 13,
+      "currency": "CNY",
+      "balance": 20000,
+      "type": "personal"
+    },
+    {
+      "id": "14",
+      "ownerId": 14,
+      "currency": "INR",
+      "balance": 150000,
+      "type": "savings"
     },
     {
       "id": "15",
-      "ownerId": 14,
-      "currency": "PLN",
-      "balance": 12312
-    },
-    {
-      "id": "ZIDUBi-",
-      "ownerId": 16,
-      "currency": "PLN",
-      "balance": 3123123
-    },
-    {
-      "id": "8UziALW",
-      "ownerId": 17,
-      "currency": "PLN",
-      "balance": 1231
-    },
-    {
-      "id": "a7vxP34",
-      "ownerId": 18,
-      "currency": "PLN",
-      "balance": 123
-    },
-    {
-      "id": "W5kwW4v",
-      "ownerId": 19,
-      "currency": "PLN",
-      "balance": 123
-    },
-    {
-      "id": "eOW92UH",
-      "ownerId": 20,
-      "currency": "PLN",
-      "balance": 123
-    },
-    {
-      "id": "A6u-ULi",
-      "ownerId": 21,
-      "currency": "PLN",
-      "balance": 3123
-    },
-    {
-      "id": "DiIJlNP",
-      "ownerId": 22,
-      "currency": "dasd",
-      "balance": 123
-    },
-    {
-      "id": "l__BJZR",
-      "ownerId": 23,
-      "currency": "PLN",
-      "balance": 32123123
-    },
-    {
-      "id": "6mspgt1",
-      "ownerId": 24,
-      "currency": "12312",
-      "balance": 123123
-    },
-    {
-      "id": "7gfdg34",
-      "ownerId": 25,
-      "currency": "USD",
-      "balance": 5000
-    },
-    {
-      "id": "8hgfj56",
-      "ownerId": 26,
-      "currency": "EUR",
-      "balance": 2600
-    },
-    {
-      "id": "9klmn67",
-      "ownerId": 27,
-      "currency": "JPY",
-      "balance": 100000
-    },
-    {
-      "id": "10mnop78",
-      "ownerId": 28,
-      "currency": "CNY",
-      "balance": 20000
-    },
-    {
-      "id": "11qrst89",
-      "ownerId": 29,
-      "currency": "INR",
-      "balance": 150000
-    },
-    {
-      "id": "12uvwx90",
-      "ownerId": 30,
+      "ownerId": 15,
       "currency": "BRL",
-      "balance": 7500
+      "balance": 7500,
+      "type": "business"
     },
     {
-      "id": "13yzab91",
-      "ownerId": 31,
+      "id": "16",
+      "ownerId": 16,
       "currency": "RUB",
-      "balance": 48000
-    },
-    {
-      "ownerId": 33312312312312,
-      "currency": "PLN",
-      "balance": 123123,
-      "id": "7vNaOzV"
-    },
-    {
-      "ownerId": 123123123123,
-      "currency": "PLN",
-      "balance": 1231,
-      "id": "S9vFLwI"
-    },
-    {
-      "ownerId": 213123,
-      "currency": "PLN",
-      "balance": 3123123,
-      "id": "QZNqsh1"
-    },
-    {
-      "ownerId": 333123123123,
-      "currency": "PLN",
-      "balance": 123,
-      "id": "F8Plqey"
-    },
-    {
-      "ownerId": 33,
-      "currency": "PLN",
-      "balance": 3123,
-      "id": "_tAAgpX"
+      "balance": 48000,
+      "type": "personal"
     }
   ]
 }
