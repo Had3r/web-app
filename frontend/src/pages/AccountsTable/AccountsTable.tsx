@@ -82,10 +82,21 @@ export const AccountsTable = () => {
   const handleDelete = async (id: number) => {
     try {
       await deleteAccount(id);
-      setAccounts((prevAccounts) =>
-        prevAccounts.filter((account) => account.id !== id)
-      );
-      setCurrentPage(1);
+
+      // Re-fetch account data to refresh the view on the current page
+      const accountsData = await fetchAccounts({
+        page: currentPage,
+        limit: resultsPerPage,
+        ...filters,
+      });
+      setAccounts(accountsData.data);
+      setTotalPages(Math.ceil(accountsData.total / resultsPerPage));
+
+      // Check if the page became empty after deletion, if so, move to the previous page
+      if (accountsData.data.length === 0 && currentPage > 1) {
+        setCurrentPage(currentPage - 1);
+      }
+
       setNotification({
         isVisible: true,
         message: 'Account successfully deleted!',
