@@ -18,6 +18,7 @@ export const AccountsTable = () => {
   const [accounts, setAccounts] = useState<Account[]>([]);
   const [currentPage, setCurrentPage] = useState(1);
   const [totalPages, setTotalPages] = useState(0);
+  const [filters, setFilters] = useState({});
   const resultsPerPage = 8;
 
   useEffect(() => {
@@ -26,6 +27,7 @@ export const AccountsTable = () => {
         const accountsData = await fetchAccounts({
           page: currentPage,
           limit: resultsPerPage,
+          ...filters,
         });
         setAccounts(accountsData.data);
 
@@ -35,7 +37,7 @@ export const AccountsTable = () => {
       }
     };
     fetchData();
-  }, [currentPage]);
+  }, [currentPage, filters]);
 
   const handleSearch = async (searchParams: any) => {
     try {
@@ -48,6 +50,8 @@ export const AccountsTable = () => {
         },
         {} as { [key: string]: any }
       );
+
+      setFilters(filteredSearchParams);
 
       const accountsData = await fetchAccounts({
         ...filteredSearchParams,
