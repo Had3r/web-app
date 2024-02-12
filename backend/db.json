@@ -209,6 +209,12 @@
       "currency": "PLN",
       "balance": 123,
       "id": "F8Plqey"
+    },
+    {
+      "ownerId": 33,
+      "currency": "PLN",
+      "balance": 3123,
+      "id": "_tAAgpX"
     }
   ]
 }

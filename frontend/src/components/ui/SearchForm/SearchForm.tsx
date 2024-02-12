@@ -53,7 +53,9 @@ export const SearchForm = ({ onSearch, className }: SearchFormProps) => {
           setSearchParams({ ...searchParams, currency: e.target.value })
         }
       />
-      <Button type="submit">Search</Button>
+      <Button type="submit" disabled={isFormEmpty}>
+        Search
+      </Button>
       <Button
         variant="secondary"
         type="button"
