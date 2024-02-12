@@ -1,6 +1,7 @@
 import { useState, useEffect } from 'react';
 
-import { SearchForm, Button, Modal } from '@components/ui';
+import { SearchForm, Button, Modal, Notification } from '@components/ui';
+import type { NotificationVariant } from '@components/ui/Notification/Notification.type';
 import { fetchAccounts, deleteAccount } from '@services/';
 import { FaRegEdit } from 'react-icons/fa';
 import { FaArrowLeft, FaArrowRight } from 'react-icons/fa';
@@ -21,6 +22,11 @@ export const AccountsTable = () => {
   const [filters, setFilters] = useState({});
   const [isModalOpen, setIsModalOpen] = useState(false);
   const [selectedOwnerId, setSelectedOwnerId] = useState<string | null>(null);
+  const [notification, setNotification] = useState({
+    isVisible: false,
+    message: '',
+    type: 'success' as NotificationVariant,
+  });
   const resultsPerPage = 8;
 
   useEffect(() => {
@@ -35,7 +41,11 @@ export const AccountsTable = () => {
 
         setTotalPages(Math.ceil(accountsData.total / resultsPerPage));
       } catch (error) {
-        console.error('Error fetching accounts:', error);
+        setNotification({
+          isVisible: true,
+          message: 'Error fetching accounts.',
+          type: 'error',
+        });
       }
     };
     fetchData();
@@ -63,7 +73,11 @@ export const AccountsTable = () => {
       setCurrentPage(1);
       setTotalPages(Math.ceil(accountsData.total / resultsPerPage));
     } catch (error) {
-      console.error('Error during search:', error);
+      setNotification({
+        isVisible: true,
+        message: 'Error during search.',
+        type: 'error',
+      });
     }
   };
 
@@ -74,9 +88,17 @@ export const AccountsTable = () => {
         prevAccounts.filter((account) => account.id !== id)
       );
       setCurrentPage(1);
-      console.log('Account deleted:', id);
+      setNotification({
+        isVisible: true,
+        message: 'Account successfully deleted!',
+        type: 'success',
+      });
     } catch (error) {
-      console.error('Error deleting account:', error);
+      setNotification({
+        isVisible: true,
+        message: 'Error deleting account.',
+        type: 'error',
+      });
     }
   };
 
@@ -168,6 +190,12 @@ export const AccountsTable = () => {
         onClose={closeModal}
         onConfirm={confirmDelete}
         ownerId={selectedOwnerId}
+      />
+      <Notification
+        message={notification.message}
+        isVisible={notification.isVisible}
+        type={notification.type}
+        onClose={() => setNotification({ ...notification, isVisible: false })}
       />
       {totalPages > 1 && (
         <div className="inline-flex gap-4 md:gap-6 w-full justify-center items-center mt-4">
