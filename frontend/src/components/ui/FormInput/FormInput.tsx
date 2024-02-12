@@ -16,7 +16,7 @@ export const FormInput = ({
 
   return (
     <div className="flex flex-col gap-2">
-      <label htmlFor={id}>{label}</label>
+      {label && <label htmlFor={id}>{label}</label>}
       <DynamicComponent
         className="px-4 py-2 border rounded-sm"
         placeholder={placeholder}

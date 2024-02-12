@@ -1,7 +1,9 @@
 import { useState, useEffect } from 'react';
 
-import { FaRegEdit } from 'react-icons/fa';
-import { MdDeleteOutline } from 'react-icons/md';
+import { SearchFormWrapper, AccountsTableComponent } from '@components/section';
+import { Modal, Notification, Pagination } from '@components/ui';
+import type { NotificationVariant } from '@components/ui/Notification/Notification.type';
+import { fetchAccounts, deleteAccount } from '@services/';
 import { Link } from 'react-router-dom';
 
 interface Account {
@@ -13,82 +15,160 @@ interface Account {
 
 export const AccountsTable = () => {
   const [accounts, setAccounts] = useState<Account[]>([]);
+  const [currentPage, setCurrentPage] = useState(1);
+  const [totalPages, setTotalPages] = useState(0);
+  const [filters, setFilters] = useState({});
+  const [isModalOpen, setIsModalOpen] = useState(false);
+  const [selectedOwnerId, setSelectedOwnerId] = useState<string | null>(null);
+  const [notification, setNotification] = useState({
+    isVisible: false,
+    message: '',
+    type: 'success' as NotificationVariant,
+  });
+  const resultsPerPage = 8;
 
   useEffect(() => {
-    const fetchAccounts = async () => {
+    const fetchData = async () => {
       try {
-        const response = await fetch('http://localhost:3001/accounts');
-        const data = await response.json();
-        setAccounts(data);
+        const accountsData = await fetchAccounts({
+          page: currentPage,
+          limit: resultsPerPage,
+          ...filters,
+        });
+        setAccounts(accountsData.data);
+
+        setTotalPages(Math.ceil(accountsData.total / resultsPerPage));
       } catch (error) {
-        console.error('Error fetching accounts:', error);
+        setNotification({
+          isVisible: true,
+          message: 'Error fetching accounts.',
+          type: 'error',
+        });
       }
     };
+    fetchData();
+  }, [currentPage, filters]);
 
-    fetchAccounts();
-  }, []);
-
-  const deleteAccount = async (id: number) => {
+  const handleSearch = async (searchParams: any) => {
     try {
-      await fetch(`http://localhost:3001/accounts/${id}`, {
-        method: 'DELETE',
+      const filteredSearchParams = Object.entries(searchParams).reduce(
+        (acc: { [key: string]: any }, [key, value]) => {
+          if (value) {
+            acc[key] = value;
+          }
+          return acc;
+        },
+        {} as { [key: string]: any }
+      );
+
+      setFilters(filteredSearchParams);
+
+      const accountsData = await fetchAccounts({
+        ...filteredSearchParams,
+        limit: resultsPerPage,
       });
-      setAccounts(accounts.filter((account) => account.id !== id));
+      setAccounts(accountsData.data);
+      setCurrentPage(1);
+      setTotalPages(Math.ceil(accountsData.total / resultsPerPage));
     } catch (error) {
-      console.error('Error deleting account:', error);
+      setNotification({
+        isVisible: true,
+        message: 'Error during search.',
+        type: 'error',
+      });
     }
   };
 
-  if (accounts.length === 0) {
-    return (
-      <div>
-        <h1>Accounts</h1>
-        <Link to="/">Back to Dashboard</Link>
-        <p>No accounts found.</p>
-      </div>
-    );
-  }
+  const handleDelete = async (id: number) => {
+    try {
+      await deleteAccount(id);
+
+      // Re-fetch account data to refresh the view on the current page
+      const accountsData = await fetchAccounts({
+        page: currentPage,
+        limit: resultsPerPage,
+        ...filters,
+      });
+      setAccounts(accountsData.data);
+      setTotalPages(Math.ceil(accountsData.total / resultsPerPage));
+
+      // Check if the page became empty after deletion, if so, move to the previous page
+      if (accountsData.data.length === 0 && currentPage > 1) {
+        setCurrentPage(currentPage - 1);
+      }
+
+      setNotification({
+        isVisible: true,
+        message: 'Account successfully deleted!',
+        type: 'success',
+      });
+    } catch (error) {
+      setNotification({
+        isVisible: true,
+        message: 'Error deleting account.',
+        type: 'error',
+      });
+    }
+  };
+
+  const openDeleteModal = (ownerId: string) => {
+    setSelectedOwnerId(ownerId);
+    setIsModalOpen(true);
+  };
+
+  const closeModal = () => {
+    setIsModalOpen(false);
+  };
+
+  const confirmDelete = () => {
+    if (selectedOwnerId) {
+      const accountToDelete = accounts.find(
+        (account) => account.ownerId === selectedOwnerId
+      );
+      if (accountToDelete) {
+        handleDelete(accountToDelete.id);
+        setIsModalOpen(false);
+      }
+    }
+  };
+
+  const handlePreviousPage = () =>
+    setCurrentPage((prev) => Math.max(prev - 1, 1));
+
+  const handleNextPage = () =>
+    setCurrentPage((prev) => Math.min(prev + 1, totalPages));
 
   return (
-    <div className="overflow-x-auto">
+    <div>
       <h1>Accounts</h1>
       <Link to="/">Back to Dashboard</Link>
-      <table className="table-auto w-full border border-gray-300">
-        <thead className="bg-gray-100">
-          <tr>
-            <th className="p-2 text-left w-1/5">Owner ID</th>
-            <th className="p-2 text-left w-1/5">Currency</th>
-            <th className="p-2 text-left w-2/5">Balance</th>
-            <th className="p-2 text-left w-1/10">Edit</th>
-            <th className="p-2 text-left w-1/10">Delete</th>
-          </tr>
-        </thead>
-        <tbody className="border-t border-gray-300">
-          {accounts.map((account) => (
-            <tr key={account.id} className="hover:bg-gray-50">
-              <td className="p-2 w-1/5">{account.ownerId}</td>
-              <td className="p-2 w-1/5">{account.currency}</td>
-              <td className="p-2 w-2/5">{account.balance}</td>
-              <td className="p-2 w-1/10">
-                <Link
-                  to={`/edit-account/${account.id}`}
-                  className="text-blue-500 hover:text-blue-700"
-                >
-                  <FaRegEdit />
-                </Link>
-              </td>
-              <td className="p-2 w-1/10">
-                <button
-                  onClick={() => deleteAccount(account.id)}
-                  className="text-red-500 hover:text-red-700"
-                >
-                  <MdDeleteOutline />
-                </button>
-              </td>
-            </tr>
-          ))}
-        </tbody>
-      </table>
+      <SearchFormWrapper onSearch={handleSearch} />
+      <AccountsTableComponent
+        accounts={accounts}
+        openDeleteModal={openDeleteModal}
+        resultsPerPage={resultsPerPage}
+      />
+      {totalPages > 1 && (
+        <Pagination
+          currentPage={currentPage}
+          totalPages={totalPages}
+          handlePreviousPage={handlePreviousPage}
+          handleNextPage={handleNextPage}
+        />
+      )}
+
+      <Modal
+        isOpen={isModalOpen}
+        onClose={closeModal}
+        onConfirm={confirmDelete}
+        ownerId={selectedOwnerId}
+      />
+      <Notification
+        message={notification.message}
+        isVisible={notification.isVisible}
+        type={notification.type}
+        onClose={() => setNotification({ ...notification, isVisible: false })}
+      />
     </div>
   );
 };

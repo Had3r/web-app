@@ -1,16 +1,18 @@
 import React, { useState, useEffect } from 'react';
 
-import { FormInput, Button } from '@components/ui';
+import { FormInput, Button, Loader } from '@components/ui';
 import {
   checkIfAccountExists,
   createAccount,
   updateAccountByOwnerId,
   getAccountById,
 } from '@services/';
+import { useNavigate } from 'react-router-dom';
 import { useParams } from 'react-router-dom';
 
 export const AccountForm = () => {
   const { id } = useParams<{ id: string }>();
+  const navigate = useNavigate();
 
   const [formData, setFormData] = useState({
     ownerId: -1,
@@ -23,6 +25,8 @@ export const AccountForm = () => {
     currency: '',
     balance: '',
   });
+  const [serverMessage, setServerMessage] = useState('');
+  const [isLoading, setIsLoading] = useState(false);
 
   const resetForm = () => {
     setFormData({
@@ -35,6 +39,7 @@ export const AccountForm = () => {
   useEffect(() => {
     const checkOwner = async () => {
       if (id) {
+        setIsLoading(true);
         const exists = await checkIfAccountExists(id);
         setOwnerExists(exists);
         if (exists) {
@@ -45,6 +50,7 @@ export const AccountForm = () => {
             balance: accountData.balance,
           });
         }
+        setIsLoading(false);
       }
     };
 
@@ -87,16 +93,28 @@ export const AccountForm = () => {
     id: string | undefined,
     ownerExists: boolean
   ) => {
-    const { ownerId, currency, balance } = formData;
-    if (ownerExists) {
-      await updateAccountByOwnerId(
-        { id: id ?? null, ownerId, currency, balance },
-        ownerId
+    try {
+      setIsLoading(true);
+      const { ownerId, currency, balance } = formData;
+      if (ownerExists) {
+        await updateAccountByOwnerId(
+          { id: id ?? null, ownerId, currency, balance },
+          ownerId
+        );
+      } else {
+        await createAccount({ ownerId, currency, balance });
+        resetForm();
+      }
+
+      setServerMessage('');
+      navigate('/account-success');
+    } catch (error) {
+      setServerMessage(
+        (error as { message: string }).message ||
+          'Failed to submit the form. Please try again.'
       );
-      alert('Account updated successfully!');
-    } else {
-      await createAccount({ ownerId, currency, balance });
-      alert('Account created successfully!');
+    } finally {
+      setIsLoading(false);
     }
   };
 
@@ -117,10 +135,6 @@ export const AccountForm = () => {
 
     try {
       await saveFormData(formData, id, ownerExists);
-      // Reset form only if creating a new account
-      if (!ownerExists) {
-        resetForm();
-      }
     } catch (error) {
       console.error('Error submitting the form:', error);
       alert('Failed to submit the form. Please try again.');
@@ -132,35 +146,42 @@ export const AccountForm = () => {
       className="mx-auto max-w-[600px] flex flex-col gap-6"
       onSubmit={handleSubmit}
     >
-      <div>{ownerExists ? 'Edit account data.' : 'Create new account.'}</div>
-      <FormInput
-        label="Owner ID:"
-        value={formData.ownerId > 0 ? formData.ownerId : ''}
-        id="ownerId"
-        placeholder="Enter owner ID"
-        type="number"
-        min="1"
-        onChange={handleChange}
-        error={formErrors.ownerId}
-      />
-      <FormInput
-        label="Currency:"
-        value={formData.currency}
-        id="currency"
-        placeholder="Enter currency"
-        onChange={handleChange}
-        error={formErrors.currency}
-      />
-      <FormInput
-        label="Balance:"
-        value={formData.balance}
-        id="balance"
-        placeholder="Enter balance"
-        type="number"
-        min="1"
-        onChange={handleChange}
-        error={formErrors.balance}
-      />
+      <div className="relative min-h-[200px]">
+        {isLoading ? (
+          <Loader className="absolute inset-0 flex justify-center items-center" />
+        ) : (
+          <>
+            <FormInput
+              label="Owner ID:"
+              value={formData.ownerId > 0 ? formData.ownerId : ''}
+              id="ownerId"
+              placeholder="Enter owner ID"
+              type="number"
+              min="1"
+              onChange={handleChange}
+              error={formErrors.ownerId || serverMessage}
+            />
+            <FormInput
+              label="Currency:"
+              value={formData.currency}
+              id="currency"
+              placeholder="Enter currency"
+              onChange={handleChange}
+              error={formErrors.currency}
+            />
+            <FormInput
+              label="Balance:"
+              value={formData.balance}
+              id="balance"
+              placeholder="Enter balance"
+              type="number"
+              min="1"
+              onChange={handleChange}
+              error={formErrors.balance}
+            />
+          </>
+        )}
+      </div>
 
       <Button className="mt-12" type="submit">
         Save

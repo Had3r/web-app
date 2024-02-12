@@ -5,4 +5,7 @@ export interface ButtonProps {
   className?: string;
   type?: 'button' | 'submit' | 'reset';
   onClick?: MouseEventHandler<HTMLButtonElement>;
+  disabled?: boolean;
+  ariaLabel?: string;
+  variant?: 'primary' | 'secondary';
 }

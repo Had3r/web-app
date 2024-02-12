@@ -12,12 +12,16 @@ export async function createAccount(accountData: AccountData): Promise<void> {
     });
 
     if (!response.ok) {
-      throw new Error('Failed to create account');
+      const errorBody = await response.json();
+      const errorMessage = errorBody.error
+        ? errorBody.error
+        : 'Failed to create account';
+      return Promise.reject({ message: errorMessage });
     }
 
     console.log('Account created successfully');
   } catch (error) {
     console.error('Error creating account:', error);
-    throw error;
+    return Promise.reject({ message: 'Error creating account', error });
   }
 }
