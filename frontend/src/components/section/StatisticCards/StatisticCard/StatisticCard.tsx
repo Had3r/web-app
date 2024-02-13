@@ -12,7 +12,7 @@ export const StatisticCard = ({
 }: StatisticCardProps) => (
   <div
     className={twMerge(
-      'flex rounded-2xl gap-4 items-center justify-between p-6 shadow-md',
+      'bg-white flex rounded-2xl gap-4 items-center justify-between p-6 shadow-md',
       className
     )}
   >

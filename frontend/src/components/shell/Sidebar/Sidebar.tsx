@@ -7,7 +7,7 @@ import type { SidebarProps } from './Sidebar.type';
 export const Sidebar = ({ className }: SidebarProps) => (
   <aside
     className={twMerge(
-      'md:basis-1/4 w-full bg-[#181d19] text-white rounded-2xl py-12 px-8',
+      'md:basis-1/4 w-full bg-[#181d19] text-white rounded-t-2xl lg:rounded-tr-none lg:rounded-l-2xl py-12 px-8',
       className
     )}
   >
