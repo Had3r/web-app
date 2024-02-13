@@ -15,7 +15,7 @@ interface FetchAccountsResponse {
 export const fetchAccounts = async (
   params: Params = {}
 ): Promise<FetchAccountsResponse> => {
-  const { page = 1, limit = 4, ...otherParams } = params;
+  const { page = 1, limit = 30, ...otherParams } = params;
   const queryString = new URLSearchParams({
     ...otherParams,
     _page: page.toString(),

@@ -11,7 +11,7 @@ export const Container = ({
 
   return (
     <DynamicComponent
-      className={twMerge('container mx-auto px-4 py-12 md:py-24', className)}
+      className={twMerge('container mx-auto px-4 py-12 ', className)}
     >
       {children}
     </DynamicComponent>
