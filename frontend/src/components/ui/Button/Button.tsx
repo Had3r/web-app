@@ -15,8 +15,8 @@ export const Button = ({
   ...rest
 }: ButtonProps) => {
   const variantStyles = {
-    primary: 'bg-bright-green hover:bg-bright-green text-white',
-    secondary: 'bg-soft-orange hover:bg-soft-orange text-black',
+    primary: 'bg-bright-green hover:bg-vivid-purple text-white',
+    secondary: 'bg-soft-orange hover:bg-warm-orange text-black',
     dark: 'bg-deep-gray hover:bg-light-gray text-white hover:text-gray-800',
   };
 

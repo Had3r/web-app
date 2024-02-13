@@ -1,4 +1,5 @@
 import type { ModalProps } from './Modal.type';
+import { Typography } from '../Typography';
 
 export const Modal = ({ isOpen, onClose, onConfirm, ownerId }: ModalProps) => {
   if (!isOpen) return null;
@@ -6,7 +7,9 @@ export const Modal = ({ isOpen, onClose, onConfirm, ownerId }: ModalProps) => {
   return (
     <div className="fixed inset-0 bg-black bg-opacity-50 flex justify-center items-center">
       <div className="bg-white p-4 rounded-lg">
-        <h2>Are you sure you want to delete the account with ID {ownerId}?</h2>
+        <Typography>
+          Are you sure you want to delete the account with ID {ownerId}?
+        </Typography>
         <div className="flex justify-end gap-4 mt-4">
           <button
             onClick={onClose}

@@ -51,6 +51,7 @@ export const FormInput = ({
       {label && (
         <label htmlFor={id} className="block text-sm font-medium text-gray-700">
           {label}
+          {isRequired && <span className="text-red-500 ml-1">*</span>}
         </label>
       )}
       {inputElement}

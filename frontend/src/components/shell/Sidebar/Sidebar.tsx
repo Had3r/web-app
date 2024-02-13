@@ -1,4 +1,4 @@
-import { Button } from '@components/ui';
+import { Button, Typography } from '@components/ui';
 import { FaUserPlus, FaListAlt } from 'react-icons/fa';
 import { twMerge } from 'tailwind-merge';
 
@@ -11,9 +11,12 @@ export const Sidebar = ({ className }: SidebarProps) => (
       className
     )}
   >
-    <h2 className="pb-12 text-3xl font-semibold flex gap-2 items-center justify-center">
+    <Typography
+      variant="h2"
+      className="pb-12 text-3xl font-semibold flex gap-2 items-center justify-center"
+    >
       Dashboard
-    </h2>
+    </Typography>
     <nav className="flex flex-col items-stretch gap-4">
       <Button
         className="flex text-left gap-3"

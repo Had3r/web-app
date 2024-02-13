@@ -1,6 +1,12 @@
 import React, { useState, useEffect } from 'react';
 
-import { FormInput, Button, Loader, Breadcrumbs } from '@components/ui';
+import {
+  FormInput,
+  Button,
+  Loader,
+  Breadcrumbs,
+  Typography,
+} from '@components/ui';
 import {
   checkIfAccountExists,
   createAccount,
@@ -26,6 +32,7 @@ export const AccountForm = () => {
     ownerId: '',
     currency: '',
     balance: '',
+    type: '',
   });
   const [serverMessage, setServerMessage] = useState('');
   const [isLoading, setIsLoading] = useState(false);
@@ -92,12 +99,13 @@ export const AccountForm = () => {
     balance: number;
     type: string;
   }) => {
-    const { ownerId, currency, balance } = formData;
+    const { ownerId, currency, balance, type } = formData;
     return {
       ownerId:
         ownerId > 0 ? '' : 'Owner ID is required and must be greater than 0.',
       currency: currency ? '' : 'Currency is required.',
       balance: balance !== null && balance !== 0 ? '' : 'Balance is required.',
+      type: type ? '' : 'Type is required.',
     };
   };
 
@@ -143,7 +151,7 @@ export const AccountForm = () => {
     event.preventDefault();
 
     // Reset errors before validation
-    setFormErrors({ ownerId: '', currency: '', balance: '' });
+    setFormErrors({ ownerId: '', currency: '', balance: '', type: '' });
 
     // Validation for all fields
     const newErrors = validateFormData(formData);
@@ -170,9 +178,9 @@ export const AccountForm = () => {
         onSubmit={handleSubmit}
       >
         <div className="text-center p-4">
-          <h1 className="text-2xl font-bold">
+          <Typography variant="h2" className="text-2xl font-bold">
             {id ? 'Edit Account' : 'Create New Account'}
-          </h1>
+          </Typography>
         </div>
         <div className="relative flex flex-col gap-4">
           {isLoading ? (
@@ -184,6 +192,7 @@ export const AccountForm = () => {
                 value={formData.ownerId > 0 ? formData.ownerId : ''}
                 id="ownerId"
                 placeholder="Enter owner ID"
+                isRequired
                 type="number"
                 min="1"
                 onChange={handleChange}
@@ -194,6 +203,7 @@ export const AccountForm = () => {
                 value={formData.currency}
                 id="currency"
                 placeholder="Enter currency"
+                isRequired
                 onChange={handleChange}
                 error={formErrors.currency}
               />
@@ -202,6 +212,7 @@ export const AccountForm = () => {
                 value={formData.balance}
                 id="balance"
                 placeholder="Enter balance"
+                isRequired
                 type="number"
                 min="1"
                 onChange={handleChange}
@@ -214,7 +225,9 @@ export const AccountForm = () => {
                 options={accountTypes}
                 id="type"
                 placeholder="Enter account type"
+                isRequired
                 onChange={handleChange}
+                error={formErrors.type}
               />
             </>
           )}

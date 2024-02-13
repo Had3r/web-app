@@ -56,12 +56,7 @@ export const SearchForm = ({ onSearch, className }: SearchFormProps) => {
       <Button type="submit" disabled={isFormEmpty}>
         Search
       </Button>
-      <Button
-        variant="secondary"
-        type="button"
-        onClick={handleReset}
-        disabled={isFormEmpty}
-      >
+      <Button variant="secondary" type="button" onClick={handleReset}>
         Reset
       </Button>
     </form>

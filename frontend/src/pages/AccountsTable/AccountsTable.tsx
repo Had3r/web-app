@@ -1,6 +1,7 @@
 import { useState, useEffect } from 'react';
 
 import { AccountsTableComponent } from '@components/section';
+import { Typography } from '@components/ui';
 import {
   Modal,
   Notification,
@@ -146,9 +147,12 @@ export const AccountsTable = () => {
 
   return (
     <div className="max-w-5xl mx-auto w-full flex flex-col">
-      <h1 className="text-4xl font-bold text-gray-800 mb-8">
+      <Typography
+        variant="h2"
+        className="text-4xl font-bold text-gray-800 mb-8"
+      >
         Account Management
-      </h1>
+      </Typography>
       <Breadcrumbs />
       <SearchForm className="mb-4 mt-6" onSearch={handleSearch} />
       <AccountsTableComponent

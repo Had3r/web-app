@@ -29,7 +29,7 @@ export const StatisticCards = ({
     <StatisticCard
       icon={<FaWallet className="text-warm-orange text-5xl p-1.5" />}
       title="Total Balance"
-      value={totalBalance}
+      value={totalBalance.toFixed(2)}
       iconBgClass="bg-soft-orange"
       className="flex-1"
     >

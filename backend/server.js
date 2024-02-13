@@ -4,7 +4,7 @@ const router = jsonServer.router("db.json");
 const middlewares = jsonServer.defaults();
 
 server.use(middlewares);
-server.use(jsonServer.bodyParser); // Added this line
+server.use(jsonServer.bodyParser);
 
 server.use((req, res, next) => {
     if (req.method === "GET" && req.path === "/accounts") {
@@ -14,6 +14,7 @@ server.use((req, res, next) => {
     }
     next();
 });
+
 
 server.use((req, res, next) => {
     if (req.method === "POST" && req.path === "/accounts") {
