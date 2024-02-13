@@ -1,10 +1,6 @@
 import { useState, useEffect } from 'react';
 
-import {
-  ImageWithGradient,
-  AccountStatistics,
-  StatisticCard,
-} from '@components/section';
+import { AccountStatistics, StatisticCard } from '@components/section';
 import { Sidebar } from '@components/shell';
 import { FaUsers, FaWallet } from 'react-icons/fa';
 import { fetchAccounts } from 'services/fetchAccounts';
@@ -42,26 +38,38 @@ export const Dashboard = () => {
 
   return (
     <div className="flex flex-col md:flex-row w-full">
-      <ImageWithGradient
-        img={{ src: 'https://placekitten.com/1600/900', alt: '' }}
-        className="md:hidden rounded-t-xl [&>*]:rounded-t-xl"
-        text="Welcome to Your Dashboard"
-      />
-      <Sidebar className="md:basis-1/4 w-full" />
+      <Sidebar className="" />
       <div className="md:basis-3/4">
-        <div className="flex flex-wrap gap-4">
-          <div className="flex p-4 gap-12">
-            <StatisticCard
-              icon={<FaUsers className="text-blue-500 text-5xl" />}
-              title="Total Number of Accounts"
-              value={accountData.total}
-            />
-            <StatisticCard
-              icon={<FaWallet className="text-blue-500 text-5xl" />}
-              title="Total Balance"
-              value={accountData.totalBalance}
-            />
-          </div>
+        <h1>Accounts Analytics</h1>
+        <div className="flex flex-col md:flex-row md:justify-between gap-12">
+          <StatisticCard
+            icon={<FaUsers className="text-[#9b89ff] text-5xl p-1" />}
+            title="Total Number of Accounts"
+            value={accountData.total}
+            iconBgClass="bg-[#ebe7ff]"
+            className="flex-1"
+          >
+            <div className="flex items-end gap-1 [&>*]:rounded-sm">
+              <div className="bg-[#eff0f3] w-2 h-8"></div>
+              <div className="bg-[#eff0f3] w-2 h-10"></div>
+              <div className="bg-[#28dc84] w-2 h-16"></div>
+              <div className="bg-[#eff0f3] w-2 h-12"></div>
+            </div>
+          </StatisticCard>
+          <StatisticCard
+            icon={<FaWallet className="text-[#fea258] text-5xl p-1.5" />}
+            title="Total Balance"
+            value={accountData.totalBalance}
+            iconBgClass="bg-[#ffecdd]"
+            className="flex-1"
+          >
+            <div className="flex items-end gap-1 [&>*]:rounded-sm">
+              <div className="bg-[#eff0f3] w-2 h-8"></div>
+              <div className="bg-[#eff0f3] w-2 h-10"></div>
+              <div className="bg-[#eff0f3] w-2 h-12"></div>
+              <div className="bg-[#28dc84] w-2 h-16"></div>
+            </div>
+          </StatisticCard>
         </div>
         <AccountStatistics accounts={accountData.accounts} />
       </div>

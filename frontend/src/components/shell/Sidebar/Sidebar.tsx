@@ -1,33 +1,35 @@
-import { MdOutlineSettingsApplications } from 'react-icons/md';
-import { Link } from 'react-router-dom';
+import { Button } from '@components/ui';
+import { FaUserPlus, FaListAlt } from 'react-icons/fa';
 import { twMerge } from 'tailwind-merge';
 
-interface SidebarProps {
-  className?: string;
-}
+import type { SidebarProps } from './Sidebar.type';
 
 export const Sidebar = ({ className }: SidebarProps) => (
-  <div
+  <aside
     className={twMerge(
-      'bg-gray-800 text-white rounded-b-xl md:rounded-tl-xl',
+      'md:basis-1/4 w-full bg-[#181d19] text-white rounded-2xl py-12 px-8',
       className
     )}
   >
-    <div className="p-5 text-xl font-semibold border-b border-gray-600 flex gap-2 items-center">
-      <MdOutlineSettingsApplications />
+    <h2 className="pb-12 text-3xl font-semibold flex gap-2 items-center justify-center">
       Dashboard
-    </div>
-    <ul className="flex flex-col p-2 ">
-      <li>
-        <Link to="/create-account" className="p-2 hover:bg-gray-700 block">
-          Create Account
-        </Link>
-      </li>
-      <li>
-        <Link to="/view-accounts" className="p-2 hover:bg-gray-700 block">
-          View Accounts
-        </Link>
-      </li>
-    </ul>
-  </div>
+    </h2>
+    <nav className="flex flex-col items-stretch gap-4">
+      <Button
+        className="flex text-left gap-3"
+        variant="dark"
+        href="/create-account"
+      >
+        <FaUserPlus size={24} /> Create Account
+      </Button>
+
+      <Button
+        className="flex text-left gap-3"
+        variant="dark"
+        href="/view-accounts"
+      >
+        <FaListAlt size={24} /> View Accounts
+      </Button>
+    </nav>
+  </aside>
 );
