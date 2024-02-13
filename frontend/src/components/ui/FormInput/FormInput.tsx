@@ -24,10 +24,12 @@ export const FormInput = ({
         className={combinedClasses}
         id={id}
         disabled={disabled}
-        required={isRequired}
         value={value || ''}
         {...rest}
       >
+        <option value="" disabled={value === ''} hidden={value === ''}>
+          {placeholder}
+        </option>
         {options.map((option, index) => (
           <option key={index} value={option}>
             {option}
@@ -41,7 +43,6 @@ export const FormInput = ({
         value={value || ''}
         id={id}
         disabled={disabled}
-        required={isRequired}
         {...rest}
       />
     );

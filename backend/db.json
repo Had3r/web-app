@@ -1,11 +1,15 @@
 {
-  "accountTypes": ["personal", "savings", "business"],
+  "accountTypes": [
+    "personal",
+    "savings",
+    "business"
+  ],
   "accounts": [
     {
       "id": "1",
       "ownerId": 1,
       "currency": "GBP",
-      "balance": 3000,
+      "balance": 3001,
       "type": "personal"
     },
     {
@@ -112,6 +116,13 @@
       "currency": "RUB",
       "balance": 3000,
       "type": "personal"
+    },
+    {
+      "ownerId": 12312,
+      "currency": "3123",
+      "balance": 3123,
+      "type": "savings",
+      "id": "BmQiMG5"
     }
   ]
 }

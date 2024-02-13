@@ -20,7 +20,7 @@ export const StatisticCard = ({
     <div className="space-y-6">
       <div className="flex items-center gap-4">
         <div className={`p-2 rounded-full ${iconBgClass}`}>{icon}</div>
-        <Typography variant="h3" className="mb-1">
+        <Typography variant="h3" className="text-base md:text-xl mb-1">
           {title}
         </Typography>
       </div>

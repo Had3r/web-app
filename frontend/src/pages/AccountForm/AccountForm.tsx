@@ -102,7 +102,9 @@ export const AccountForm = () => {
     const { ownerId, currency, balance, type } = formData;
     return {
       ownerId:
-        ownerId > 0 ? '' : 'Owner ID is required and must be greater than 0.',
+        ownerId > 0
+          ? ''
+          : 'Owner ID is required, must be greater than 0 and unique.',
       currency: currency ? '' : 'Currency is required.',
       balance: balance !== null && balance !== 0 ? '' : 'Balance is required.',
       type: type ? '' : 'Type is required.',
@@ -130,13 +132,13 @@ export const AccountForm = () => {
           { id: id ?? null, ownerId, currency, balance, type },
           ownerId
         );
+        navigate('/view-accounts');
       } else {
         await createAccount({ ownerId, currency, balance, type });
         resetForm();
+        setServerMessage('');
+        navigate('/account-success');
       }
-
-      setServerMessage('');
-      navigate('/account-success');
     } catch (error) {
       setServerMessage(
         (error as { message: string }).message ||
@@ -156,7 +158,6 @@ export const AccountForm = () => {
     // Validation for all fields
     const newErrors = validateFormData(formData);
     setFormErrors(newErrors);
-
     // Check if there are any errors
     if (hasFormErrors(newErrors)) {
       return;
@@ -166,13 +167,23 @@ export const AccountForm = () => {
       await saveFormData(formData, id, ownerExists);
     } catch (error) {
       console.error('Error submitting the form:', error);
-      alert('Failed to submit the form. Please try again.');
     }
   };
 
+  const breadcrumbs = id
+    ? [
+        { label: 'Home', link: '/' },
+        { label: 'View Accounts', link: '/view-accounts' },
+        { label: 'Edit Account' },
+      ]
+    : [
+        { label: 'Home', link: '/' },
+        { label: 'Create Account', link: '/create-account' },
+      ];
+
   return (
     <div className="max-w-xl mx-auto w-full flex flex-col">
-      <Breadcrumbs className="mb-8" />
+      <Breadcrumbs className="mb-8" breadcrumbs={breadcrumbs} />
       <form
         className="w-full h-max max-w-xl p-8 bg-white shadow-md rounded-lg flex flex-col gap-6"
         onSubmit={handleSubmit}
@@ -187,17 +198,19 @@ export const AccountForm = () => {
             <Loader className="absolute inset-0 flex justify-center items-center" />
           ) : (
             <>
-              <FormInput
-                label="Owner ID:"
-                value={formData.ownerId > 0 ? formData.ownerId : ''}
-                id="ownerId"
-                placeholder="Enter owner ID"
-                isRequired
-                type="number"
-                min="1"
-                onChange={handleChange}
-                error={formErrors.ownerId || serverMessage}
-              />
+              {!id && (
+                <FormInput
+                  label="Owner ID:"
+                  value={formData.ownerId > 0 ? formData.ownerId : ''}
+                  id="ownerId"
+                  placeholder="Enter owner ID"
+                  isRequired
+                  type="number"
+                  min="1"
+                  onChange={handleChange}
+                  error={formErrors.ownerId || serverMessage}
+                />
+              )}
               <FormInput
                 label="Currency:"
                 value={formData.currency}

@@ -145,6 +145,11 @@ export const AccountsTable = () => {
   const handleNextPage = () =>
     setCurrentPage((prev) => Math.min(prev + 1, totalPages));
 
+  const breadcrumbs = [
+    { label: 'Home', link: '/' },
+    { label: 'View Accounts', link: '/view-accounts' },
+  ];
+
   return (
     <div className="max-w-5xl mx-auto w-full flex flex-col">
       <Typography
@@ -153,7 +158,7 @@ export const AccountsTable = () => {
       >
         Account Management
       </Typography>
-      <Breadcrumbs />
+      <Breadcrumbs breadcrumbs={breadcrumbs} />
       <SearchForm className="mb-4 mt-6" onSearch={handleSearch} />
       <AccountsTableComponent
         accounts={accounts}

@@ -30,7 +30,6 @@ export const AccountsTableComponent = ({
         {accounts.length === 0 ? (
           <tr>
             <td colSpan={6} className="text-center p-2">
-              {' '}
               No accounts found.
             </td>
           </tr>
@@ -49,7 +48,7 @@ export const AccountsTableComponent = ({
                 >
                   {account.type}
                 </span>
-              </td>{' '}
+              </td>
               <td className="p-2 w-1/12">
                 <Link
                   aria-label={`Edit account ${account.ownerId}`}
