@@ -1,4 +1,3 @@
-// Adjust the fetchAccounts function signature to accept a second optional parameter
 import { API_URL } from '../config';
 
 interface Params {

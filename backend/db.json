@@ -1,4 +1,5 @@
 {
+  "accountTypes": ["personal", "savings", "business"],
   "accounts": [
     {
       "id": "1",

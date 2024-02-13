@@ -8,7 +8,7 @@ export const StatisticCard = ({
   value,
   children,
   className,
-  iconBgClass = 'bg-[#ebe7ff]',
+  iconBgClass = 'bg-pale-purple',
 }: StatisticCardProps) => (
   <div
     className={twMerge(
@@ -21,7 +21,7 @@ export const StatisticCard = ({
         <div className={`p-2 rounded-full ${iconBgClass}`}>{icon}</div>
         <h3 className="text-xl font-semibold mb-1">{title}</h3>
       </div>
-      <p className="text-4xl font-medium text-[#282a28]">
+      <p className="text-4xl font-medium text-deep-gray">
         {typeof value === 'number' ? value.toFixed(2) : value}
       </p>
     </div>

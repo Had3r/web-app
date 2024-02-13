@@ -10,20 +10,50 @@ export const FormInput = ({
   placeholder,
   id,
   error,
+  options = [],
   ...rest
 }: FormInputProps) => {
-  const DynamicComponent = tag === 'textarea' ? 'textarea' : 'input';
+  const baseClasses = 'px-4 py-2 border border-gray-300 rounded-md shadow-sm';
+  const focusClasses =
+    'focus:outline-none focus:ring-2 focus:ring-indigo-500 focus:border-indigo-500';
+  const combinedClasses = `${baseClasses} ${focusClasses} ${className}`;
 
-  return (
-    <div className="flex flex-col gap-2">
-      {label && <label htmlFor={id}>{label}</label>}
-      <DynamicComponent
-        className="px-4 py-2 border rounded-sm"
+  const inputElement =
+    tag === 'select' ? (
+      <select
+        className={combinedClasses}
+        id={id}
+        disabled={disabled}
+        required={isRequired}
+        value={value || ''}
+        {...rest}
+      >
+        {options.map((option, index) => (
+          <option key={index} value={option}>
+            {option}
+          </option>
+        ))}
+      </select>
+    ) : (
+      <input
+        className={combinedClasses}
         placeholder={placeholder}
         value={value || ''}
         id={id}
+        disabled={disabled}
+        required={isRequired}
         {...rest}
       />
+    );
+
+  return (
+    <div className="flex flex-col gap-2">
+      {label && (
+        <label htmlFor={id} className="block text-sm font-medium text-gray-700">
+          {label}
+        </label>
+      )}
+      {inputElement}
       {error && <p className="text-red-500 text-sm mt-1">{error}</p>}
     </div>
   );
