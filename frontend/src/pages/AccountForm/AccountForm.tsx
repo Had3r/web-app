@@ -1,11 +1,18 @@
 import React, { useState, useEffect } from 'react';
 
-import { FormInput, Button, Loader } from '@components/ui';
+import {
+  FormInput,
+  Button,
+  Loader,
+  Breadcrumbs,
+  Typography,
+} from '@components/ui';
 import {
   checkIfAccountExists,
   createAccount,
   updateAccountByOwnerId,
   getAccountById,
+  fetchAccountTypes,
 } from '@services/';
 import { useNavigate } from 'react-router-dom';
 import { useParams } from 'react-router-dom';
@@ -18,21 +25,25 @@ export const AccountForm = () => {
     ownerId: -1,
     currency: '',
     balance: 0,
+    type: '',
   });
   const [ownerExists, setOwnerExists] = useState(false);
   const [formErrors, setFormErrors] = useState({
     ownerId: '',
     currency: '',
     balance: '',
+    type: '',
   });
   const [serverMessage, setServerMessage] = useState('');
   const [isLoading, setIsLoading] = useState(false);
+  const [accountTypes, setAccountTypes] = useState<string[]>([]);
 
   const resetForm = () => {
     setFormData({
       ownerId: -1,
       currency: '',
       balance: 0,
+      type: '',
     });
   };
 
@@ -48,6 +59,7 @@ export const AccountForm = () => {
             ownerId: accountData.ownerId,
             currency: accountData.currency,
             balance: accountData.balance,
+            type: accountData.type,
           });
         }
         setIsLoading(false);
@@ -57,10 +69,20 @@ export const AccountForm = () => {
     checkOwner();
   }, [id]);
 
+  useEffect(() => {
+    const initFetchAccountTypes = async () => {
+      const data = await fetchAccountTypes();
+      setAccountTypes(data);
+    };
+
+    initFetchAccountTypes();
+  }, []);
+
   const handleChange = (
     e:
       | React.ChangeEvent<HTMLInputElement>
       | React.ChangeEvent<HTMLTextAreaElement>
+      | React.ChangeEvent<HTMLSelectElement>
   ) => {
     const target = e.target;
     const { id, value } = target;
@@ -75,13 +97,15 @@ export const AccountForm = () => {
     ownerId: number;
     currency: string;
     balance: number;
+    type: string;
   }) => {
-    const { ownerId, currency, balance } = formData;
+    const { ownerId, currency, balance, type } = formData;
     return {
       ownerId:
         ownerId > 0 ? '' : 'Owner ID is required and must be greater than 0.',
       currency: currency ? '' : 'Currency is required.',
       balance: balance !== null && balance !== 0 ? '' : 'Balance is required.',
+      type: type ? '' : 'Type is required.',
     };
   };
 
@@ -89,20 +113,25 @@ export const AccountForm = () => {
     Object.values(errors).some((error) => error !== '');
 
   const saveFormData = async (
-    formData: { ownerId: number; currency: string; balance: number },
+    formData: {
+      ownerId: number;
+      currency: string;
+      balance: number;
+      type: string;
+    },
     id: string | undefined,
     ownerExists: boolean
   ) => {
     try {
       setIsLoading(true);
-      const { ownerId, currency, balance } = formData;
+      const { ownerId, currency, balance, type } = formData;
       if (ownerExists) {
         await updateAccountByOwnerId(
-          { id: id ?? null, ownerId, currency, balance },
+          { id: id ?? null, ownerId, currency, balance, type },
           ownerId
         );
       } else {
-        await createAccount({ ownerId, currency, balance });
+        await createAccount({ ownerId, currency, balance, type });
         resetForm();
       }
 
@@ -122,7 +151,7 @@ export const AccountForm = () => {
     event.preventDefault();
 
     // Reset errors before validation
-    setFormErrors({ ownerId: '', currency: '', balance: '' });
+    setFormErrors({ ownerId: '', currency: '', balance: '', type: '' });
 
     // Validation for all fields
     const newErrors = validateFormData(formData);
@@ -142,50 +171,72 @@ export const AccountForm = () => {
   };
 
   return (
-    <form
-      className="mx-auto max-w-[600px] flex flex-col gap-6"
-      onSubmit={handleSubmit}
-    >
-      <div className="relative min-h-[200px]">
-        {isLoading ? (
-          <Loader className="absolute inset-0 flex justify-center items-center" />
-        ) : (
-          <>
-            <FormInput
-              label="Owner ID:"
-              value={formData.ownerId > 0 ? formData.ownerId : ''}
-              id="ownerId"
-              placeholder="Enter owner ID"
-              type="number"
-              min="1"
-              onChange={handleChange}
-              error={formErrors.ownerId || serverMessage}
-            />
-            <FormInput
-              label="Currency:"
-              value={formData.currency}
-              id="currency"
-              placeholder="Enter currency"
-              onChange={handleChange}
-              error={formErrors.currency}
-            />
-            <FormInput
-              label="Balance:"
-              value={formData.balance}
-              id="balance"
-              placeholder="Enter balance"
-              type="number"
-              min="1"
-              onChange={handleChange}
-              error={formErrors.balance}
-            />
-          </>
-        )}
-      </div>
+    <div className="max-w-xl mx-auto w-full flex flex-col">
+      <Breadcrumbs className="mb-8" />
+      <form
+        className="w-full h-max max-w-xl p-8 bg-white shadow-md rounded-lg flex flex-col gap-6"
+        onSubmit={handleSubmit}
+      >
+        <div className="text-center p-4">
+          <Typography variant="h2" className="text-2xl font-bold">
+            {id ? 'Edit Account' : 'Create New Account'}
+          </Typography>
+        </div>
+        <div className="relative flex flex-col gap-4">
+          {isLoading ? (
+            <Loader className="absolute inset-0 flex justify-center items-center" />
+          ) : (
+            <>
+              <FormInput
+                label="Owner ID:"
+                value={formData.ownerId > 0 ? formData.ownerId : ''}
+                id="ownerId"
+                placeholder="Enter owner ID"
+                isRequired
+                type="number"
+                min="1"
+                onChange={handleChange}
+                error={formErrors.ownerId || serverMessage}
+              />
+              <FormInput
+                label="Currency:"
+                value={formData.currency}
+                id="currency"
+                placeholder="Enter currency"
+                isRequired
+                onChange={handleChange}
+                error={formErrors.currency}
+              />
+              <FormInput
+                label="Balance:"
+                value={formData.balance}
+                id="balance"
+                placeholder="Enter balance"
+                isRequired
+                type="number"
+                min="1"
+                onChange={handleChange}
+                error={formErrors.balance}
+              />
+              <FormInput
+                label="Type:"
+                value={formData.type}
+                tag="select"
+                options={accountTypes}
+                id="type"
+                placeholder="Enter account type"
+                isRequired
+                onChange={handleChange}
+                error={formErrors.type}
+              />
+            </>
+          )}
+        </div>
 
-      <Button className="mt-12" type="submit">
-        Save
-      </Button>
-    </form>
+        <Button variant="primary" type="submit">
+          Save
+        </Button>
+      </form>
+    </div>
   );
 };

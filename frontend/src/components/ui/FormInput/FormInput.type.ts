@@ -12,8 +12,12 @@ export interface FormInputProps {
   isRequired?: boolean;
   placeholder?: string;
   min?: string;
+  options?: string[];
   onChange?: (
-    e: ChangeEvent<HTMLInputElement> | ChangeEvent<HTMLTextAreaElement>
+    e:
+      | ChangeEvent<HTMLInputElement>
+      | ChangeEvent<HTMLTextAreaElement>
+      | ChangeEvent<HTMLSelectElement>
   ) => void;
   type?: string;
 }

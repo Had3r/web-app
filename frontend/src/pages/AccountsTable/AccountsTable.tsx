@@ -1,16 +1,23 @@
 import { useState, useEffect } from 'react';
 
-import { SearchFormWrapper, AccountsTableComponent } from '@components/section';
-import { Modal, Notification, Pagination } from '@components/ui';
+import { AccountsTableComponent } from '@components/section';
+import { Typography } from '@components/ui';
+import {
+  Modal,
+  Notification,
+  Pagination,
+  Breadcrumbs,
+  SearchForm,
+} from '@components/ui';
 import type { NotificationVariant } from '@components/ui/Notification/Notification.type';
 import { fetchAccounts, deleteAccount } from '@services/';
-import { Link } from 'react-router-dom';
 
 interface Account {
   id: number;
   ownerId: string;
   currency: string;
   balance: number;
+  type: 'personal' | 'savings' | 'business';
 }
 
 export const AccountsTable = () => {
@@ -139,10 +146,15 @@ export const AccountsTable = () => {
     setCurrentPage((prev) => Math.min(prev + 1, totalPages));
 
   return (
-    <div>
-      <h1>Accounts</h1>
-      <Link to="/">Back to Dashboard</Link>
-      <SearchFormWrapper onSearch={handleSearch} />
+    <div className="max-w-5xl mx-auto w-full flex flex-col">
+      <Typography
+        variant="h2"
+        className="text-4xl font-bold text-gray-800 mb-8"
+      >
+        Account Management
+      </Typography>
+      <Breadcrumbs />
+      <SearchForm className="mb-4 mt-6" onSearch={handleSearch} />
       <AccountsTableComponent
         accounts={accounts}
         openDeleteModal={openDeleteModal}

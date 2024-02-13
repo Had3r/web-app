@@ -1,3 +1,4 @@
+import { Typography } from '@components/ui';
 import { twMerge } from 'tailwind-merge';
 
 import type { StatisticCardProps } from './StatisticCard.type';
@@ -8,7 +9,7 @@ export const StatisticCard = ({
   value,
   children,
   className,
-  iconBgClass = 'bg-[#ebe7ff]',
+  iconBgClass = 'bg-pale-purple',
 }: StatisticCardProps) => (
   <div
     className={twMerge(
@@ -19,11 +20,11 @@ export const StatisticCard = ({
     <div className="space-y-6">
       <div className="flex items-center gap-4">
         <div className={`p-2 rounded-full ${iconBgClass}`}>{icon}</div>
-        <h3 className="text-xl font-semibold mb-1">{title}</h3>
+        <Typography variant="h3" className="mb-1">
+          {title}
+        </Typography>
       </div>
-      <p className="text-4xl font-medium text-[#282a28]">
-        {typeof value === 'number' ? value.toFixed(2) : value}
-      </p>
+      <p className="text-4xl font-medium text-deep-gray">{value}</p>
     </div>
     {children}
   </div>
