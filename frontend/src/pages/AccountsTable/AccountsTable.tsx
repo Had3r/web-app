@@ -1,16 +1,16 @@
 import { useState, useEffect } from 'react';
 
-import { AccountsTableComponent } from '@components/section';
-import { Typography } from '@components/ui';
+import { AccountsTableComponent } from 'components/section';
+import { Typography } from 'components/ui';
 import {
   Modal,
   Notification,
   Pagination,
   Breadcrumbs,
   SearchForm,
-} from '@components/ui';
-import type { NotificationVariant } from '@components/ui/Notification/Notification.type';
-import { fetchAccounts, deleteAccount } from '@services/';
+} from 'components/ui';
+import type { NotificationVariant } from 'components/ui/Notification/Notification.type';
+import { fetchAccounts, deleteAccount } from 'services/';
 
 interface Account {
   id: number;
@@ -145,15 +145,23 @@ export const AccountsTable = () => {
   const handleNextPage = () =>
     setCurrentPage((prev) => Math.min(prev + 1, totalPages));
 
+  const breadcrumbs = [
+    { label: 'Home', link: '/' },
+    { label: 'View Accounts', link: '/view-accounts' },
+  ];
+
   return (
-    <div className="max-w-5xl mx-auto w-full flex flex-col">
+    <div
+      data-testid="accounts-table"
+      className="max-w-5xl mx-auto w-full flex flex-col"
+    >
       <Typography
         variant="h2"
         className="text-4xl font-bold text-gray-800 mb-8"
       >
         Account Management
       </Typography>
-      <Breadcrumbs />
+      <Breadcrumbs breadcrumbs={breadcrumbs} />
       <SearchForm className="mb-4 mt-6" onSearch={handleSearch} />
       <AccountsTableComponent
         accounts={accounts}

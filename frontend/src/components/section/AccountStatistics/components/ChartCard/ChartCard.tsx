@@ -1,6 +1,6 @@
 import React from 'react';
 
-import { Typography } from '@components/ui';
+import { Typography } from 'components/ui';
 import { twMerge } from 'tailwind-merge';
 
 import type { ChartCardProps } from './ChardCard.type';

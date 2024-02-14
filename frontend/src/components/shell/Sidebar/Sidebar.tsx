@@ -1,4 +1,4 @@
-import { Button, Typography } from '@components/ui';
+import { Button, Typography } from 'components/ui';
 import { FaUserPlus, FaListAlt } from 'react-icons/fa';
 import { twMerge } from 'tailwind-merge';
 
@@ -7,7 +7,7 @@ import type { SidebarProps } from './Sidebar.type';
 export const Sidebar = ({ className }: SidebarProps) => (
   <aside
     className={twMerge(
-      'md:basis-1/4 w-full bg-[#181d19] text-white rounded-t-2xl lg:rounded-tr-none lg:rounded-l-2xl py-12 px-8',
+      'md:basis-1/4 w-full bg-[#181d19] text-white rounded-t-2xl lg:rounded-tr-none lg:rounded-l-2xl py-8 px-4 sm:py-12 sm:px-8',
       className
     )}
   >

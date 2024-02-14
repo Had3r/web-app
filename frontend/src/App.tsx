@@ -1,4 +1,4 @@
-import { MainLayout } from '@components/layouts';
+import { MainLayout } from 'components/layouts';
 import {
   Dashboard,
   AccountForm,
@@ -11,7 +11,7 @@ import { BrowserRouter as Router, Route, Routes } from 'react-router-dom';
 function App() {
   return (
     <Router>
-      <MainLayout>
+      <MainLayout data-testid="app-container">
         <Routes>
           <Route path="/" element={<Dashboard />} />
           <Route path="/create-account" element={<AccountForm />} />

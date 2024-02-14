@@ -1,4 +1,4 @@
-import { Typography } from '@components/ui';
+import { Typography } from 'components/ui';
 import { Link } from 'react-router-dom';
 
 export const NotFoundPage = () => (
