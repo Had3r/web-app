@@ -11,7 +11,7 @@ export const AccountsTableComponent = ({
   resultsPerPage,
   openDeleteModal,
 }: AccountsTableComponentProps) => (
-  <div
+  <section
     className="overflow-x-auto min-h-[calc()]"
     style={{ minHeight: `calc(${resultsPerPage} * 50px)` }}
   >
@@ -72,5 +72,5 @@ export const AccountsTableComponent = ({
         )}
       </tbody>
     </table>
-  </div>
+  </section>
 );

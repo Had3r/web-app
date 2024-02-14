@@ -1,17 +1,13 @@
 import { FaUsers, FaWallet } from 'react-icons/fa';
 
 import { StatisticCard } from './StatisticCard';
-
-interface StatisticCardsProps {
-  totalAccounts: number;
-  totalBalance: number;
-}
+import type { StatisticCardsProps } from './StatisticCards.type';
 
 export const StatisticCards = ({
   totalAccounts,
   totalBalance,
 }: StatisticCardsProps) => (
-  <div className="flex flex-col md:flex-row md:justify-between gap-12">
+  <section className="flex flex-col md:flex-row md:justify-between gap-12">
     <StatisticCard
       icon={
         <FaUsers className="text-vivid-purple text-3xl md:text-5xl md:p-1" />
@@ -44,5 +40,5 @@ export const StatisticCards = ({
         <div className="bg-bright-green w-2 h-16"></div>
       </div>
     </StatisticCard>
-  </div>
+  </section>
 );

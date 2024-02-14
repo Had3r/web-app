@@ -1,27 +1,17 @@
-import React, { useEffect, useState } from 'react';
+import { useEffect, useState } from 'react';
 
 import { Bar } from 'react-chartjs-2';
 
-import { Account } from '../../AccountStatistics';
+import {
+  backgroundColors,
+  borderColors,
+} from './BalanceDistributionBar.styles';
+import type { ChartData } from '../../AccountStatistics.type';
+import type { AccountStatisticsProps } from '../../AccountStatistics.type';
 
-interface Props {
-  accounts: Account[];
-}
-
-interface ChartData {
-  labels: string[];
-  datasets: [
-    {
-      label: string;
-      data: number[];
-      backgroundColor: string[];
-      borderColor: string[];
-      borderWidth: number;
-    },
-  ];
-}
-
-export const BalanceDistributionBar: React.FC<Props> = ({ accounts }) => {
+export const BalanceDistributionBar = ({
+  accounts,
+}: AccountStatisticsProps) => {
   const [balanceDistribution, setBalanceDistribution] = useState<ChartData>({
     labels: [],
     datasets: [
@@ -57,16 +47,8 @@ export const BalanceDistributionBar: React.FC<Props> = ({ accounts }) => {
         {
           label: 'Total Balance by Account Type',
           data: balanceValues,
-          backgroundColor: [
-            'rgba(75, 192, 192, 0.2)',
-            'rgba(153, 102, 255, 0.2)',
-            'rgba(255, 159, 64, 0.2)',
-          ],
-          borderColor: [
-            'rgba(75, 192, 192, 1)',
-            'rgba(153, 102, 255, 1)',
-            'rgba(255, 159, 64, 1)',
-          ],
+          backgroundColor: backgroundColors,
+          borderColor: borderColors,
           borderWidth: 1,
         },
       ],
