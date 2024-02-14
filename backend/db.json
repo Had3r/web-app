@@ -9,22 +9,8 @@
       "id": "1",
       "ownerId": 1,
       "currency": "GBP",
-      "balance": 3001,
+      "balance": 3000,
       "type": "personal"
-    },
-    {
-      "id": "2",
-      "ownerId": 2,
-      "currency": "GBP",
-      "balance": 2900,
-      "type": "savings"
-    },
-    {
-      "id": "3",
-      "ownerId": 3,
-      "currency": "GBP",
-      "balance": 3100,
-      "type": "business"
     },
     {
       "id": "4",
@@ -39,13 +25,6 @@
       "currency": "PLN",
       "balance": 2900,
       "type": "savings"
-    },
-    {
-      "id": "6",
-      "ownerId": 6,
-      "currency": "PLN",
-      "balance": 3100,
-      "type": "business"
     },
     {
       "id": "7",

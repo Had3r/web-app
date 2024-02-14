@@ -1,8 +1,8 @@
 import { ChangeEvent } from 'react';
 
 export interface FormInputProps {
-  value: string | number | null;
   id: string;
+  value?: string | number | null;
   error?: string;
   name?: string;
   tag?: string;
@@ -13,7 +13,7 @@ export interface FormInputProps {
   placeholder?: string;
   min?: string;
   options?: string[];
-  onChange?: (
+  onChange: (
     e:
       | ChangeEvent<HTMLInputElement>
       | ChangeEvent<HTMLTextAreaElement>
