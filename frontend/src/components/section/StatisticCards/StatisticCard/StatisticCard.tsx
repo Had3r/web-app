@@ -1,4 +1,4 @@
-import { Typography } from '@components/ui';
+import { Typography } from 'components/ui';
 import { twMerge } from 'tailwind-merge';
 
 import type { StatisticCardProps } from './StatisticCard.type';

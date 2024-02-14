@@ -1,4 +1,4 @@
-import { Typography } from '@components/ui';
+import { Typography } from 'components/ui';
 
 export const Header = () => (
   <header className="bg-light-gray p-5 text-center">

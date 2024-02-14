@@ -1,4 +1,4 @@
-import { Footer, Header } from '@components/shell';
+import { Footer, Header } from 'components/shell';
 
 import type { MainLayoutProps } from './MainLayout.type';
 import { Container } from '../Container';

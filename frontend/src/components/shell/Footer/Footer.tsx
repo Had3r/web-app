@@ -1,4 +1,4 @@
-import { SocialLink } from '@components/ui';
+import { SocialLink } from 'components/ui';
 import { FaGithub, FaLinkedin, FaEnvelope } from 'react-icons/fa';
 
 export const Footer = () => (

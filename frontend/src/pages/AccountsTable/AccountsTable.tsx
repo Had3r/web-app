@@ -1,16 +1,16 @@
 import { useState, useEffect } from 'react';
 
-import { AccountsTableComponent } from '@components/section';
-import { Typography } from '@components/ui';
+import { AccountsTableComponent } from 'components/section';
+import { Typography } from 'components/ui';
 import {
   Modal,
   Notification,
   Pagination,
   Breadcrumbs,
   SearchForm,
-} from '@components/ui';
-import type { NotificationVariant } from '@components/ui/Notification/Notification.type';
-import { fetchAccounts, deleteAccount } from '@services/';
+} from 'components/ui';
+import type { NotificationVariant } from 'components/ui/Notification/Notification.type';
+import { fetchAccounts, deleteAccount } from 'services/';
 
 interface Account {
   id: number;

@@ -1,4 +1,4 @@
-import { Button, Typography } from '@components/ui';
+import { Button, Typography } from 'components/ui';
 import { FaUserPlus, FaListAlt } from 'react-icons/fa';
 import { twMerge } from 'tailwind-merge';
 

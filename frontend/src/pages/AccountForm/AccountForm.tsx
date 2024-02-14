@@ -6,16 +6,16 @@ import {
   Loader,
   Breadcrumbs,
   Typography,
-} from '@components/ui';
+} from 'components/ui';
+import { useNavigate } from 'react-router-dom';
+import { useParams } from 'react-router-dom';
 import {
   checkIfAccountExists,
   createAccount,
   updateAccountByOwnerId,
   getAccountById,
   fetchAccountTypes,
-} from '@services/';
-import { useNavigate } from 'react-router-dom';
-import { useParams } from 'react-router-dom';
+} from 'services/';
 
 export const AccountForm = () => {
   const { id } = useParams<{ id: string }>();

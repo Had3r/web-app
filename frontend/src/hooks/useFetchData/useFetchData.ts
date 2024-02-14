@@ -1,6 +1,6 @@
 import { useState, useEffect } from 'react';
 
-import type { AccountData } from '@pages/Dashboard/Dashboard.type';
+import type { AccountData } from 'pages/Dashboard/Dashboard.type';
 import { fetchAccounts } from 'services/fetchAccounts';
 
 export const useFetchData = () => {

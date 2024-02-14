@@ -1,6 +1,6 @@
-import { AccountStatistics, StatisticCards } from '@components/section';
-import { Sidebar } from '@components/shell';
-import { Typography } from '@components/ui';
+import { AccountStatistics, StatisticCards } from 'components/section';
+import { Sidebar } from 'components/shell';
+import { Typography } from 'components/ui';
 import { useFetchData } from 'hooks';
 
 export const Dashboard = () => {
