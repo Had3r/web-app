@@ -9,7 +9,7 @@
       "id": "1",
       "ownerId": 1,
       "currency": "GBP",
-      "balance": 3000,
+      "balance": 3001,
       "type": "personal"
     },
     {
@@ -102,6 +102,62 @@
       "balance": 3123,
       "type": "savings",
       "id": "BmQiMG5"
+    },
+    {
+      "id": "41",
+      "ownerId": 32,
+      "currency": "PLN",
+      "balance": 3000,
+      "type": "personal"
+    },
+    {
+      "id": "42",
+      "ownerId": 123123,
+      "currency": "PLN",
+      "balance": 3000,
+      "type": "personal"
+    },
+    {
+      "id": "43",
+      "ownerId": 331,
+      "currency": "PLN",
+      "balance": 3000,
+      "type": "personal"
+    },
+    {
+      "id": "44",
+      "ownerId": 76,
+      "currency": "PLN",
+      "balance": 3000,
+      "type": "personal"
+    },
+    {
+      "id": "44",
+      "ownerId": 567,
+      "currency": "PLN",
+      "balance": 3000,
+      "type": "personal"
+    },
+    {
+      "id": "45",
+      "ownerId": 7657,
+      "currency": "PLN",
+      "balance": 3000,
+      "type": "personal"
+    },
+    {
+      "id": "46",
+      "ownerId": 77,
+      "currency": "PLN",
+      "balance": 3000,
+      "type": "personal"
+    },
+    {
+      "id": "434",
+      "ownerId": 456,
+      "currency": "PLN",
+      "balance": 3000,
+      "type": "personal"
     }
   ]
 }

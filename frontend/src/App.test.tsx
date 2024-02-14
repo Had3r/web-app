@@ -1,3 +1,5 @@
+import { ReactElement } from 'react';
+
 import { render, screen } from '@testing-library/react';
 
 import App from './App';
@@ -16,8 +18,11 @@ jest.mock(
   })
 );
 
-test('App component loads in the DOM', () => {
-  render(<App />);
-  const appElement = screen.getByTestId('app-container');
-  expect(appElement).toBeInTheDocument();
+const renderWithRouter = (ui: ReactElement, { route = '/' } = {}) => render(ui);
+
+describe('App routing', () => {
+  test('should render Dashboard on path "/"', () => {
+    renderWithRouter(<App />, { route: '/' });
+    expect(screen.getByTestId('dashboard')).toBeInTheDocument();
+  });
 });

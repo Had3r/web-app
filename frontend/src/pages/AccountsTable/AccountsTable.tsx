@@ -151,7 +151,10 @@ export const AccountsTable = () => {
   ];
 
   return (
-    <div className="max-w-5xl mx-auto w-full flex flex-col">
+    <div
+      data-testid="accounts-table"
+      className="max-w-5xl mx-auto w-full flex flex-col"
+    >
       <Typography
         variant="h2"
         className="text-4xl font-bold text-gray-800 mb-8"
