@@ -6,10 +6,10 @@ export const deleteAccount = async (id: number) => {
       method: 'DELETE',
     });
     if (!response.ok) {
-      throw new Error('Failed to delete account');
+      return Promise.reject('Failed to delete account');
     }
   } catch (error) {
     console.error('Error during account deletion:', error);
-    throw error;
+    return Promise.reject(error);
   }
 };

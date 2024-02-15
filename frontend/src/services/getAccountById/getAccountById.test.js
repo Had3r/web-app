@@ -5,6 +5,12 @@ global.fetch = jest.fn();
 describe('getAccountById', () => {
   beforeEach(() => {
     jest.clearAllMocks();
+    jest.spyOn(console, 'error').mockImplementation(() => {});
+  });
+
+  afterEach(() => {
+    jest.clearAllMocks();
+    console.error.mockRestore();
   });
 
   it('should return account data for a given id', async () => {
@@ -28,9 +34,5 @@ describe('getAccountById', () => {
     await expect(getAccountById('404')).rejects.toThrow(
       'Network response was not ok'
     );
-  });
-
-  afterEach(() => {
-    jest.clearAllMocks();
   });
 });

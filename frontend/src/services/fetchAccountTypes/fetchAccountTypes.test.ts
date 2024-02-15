@@ -24,6 +24,6 @@ describe('fetchAccountTypes', () => {
   it('should handle fetch error', async () => {
     (fetch as jest.Mock).mockRejectedValueOnce(new Error('Failed to fetch'));
 
-    await expect(fetchAccountTypes()).rejects.toThrow('Error fetching data');
+    await expect(fetchAccountTypes()).rejects.toEqual('Error fetching data');
   });
 });

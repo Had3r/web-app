@@ -32,6 +32,6 @@ describe('deleteAccount service', () => {
       ok: false,
     });
 
-    await expect(deleteAccount(id)).rejects.toThrow('Failed to delete account');
+    await expect(deleteAccount(id)).rejects.toEqual('Failed to delete account');
   });
 });
