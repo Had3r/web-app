@@ -40,7 +40,7 @@ Before starting the frontend application, you need to start the mocked backend s
    yarn start
    ```
 
-   This will run the backend server in development mode. Open [http://localhost:3001]http://localhost:3001 to view it in the browser.
+   This will run the backend server in development mode. Open [http://localhost:3001](http://localhost:3001) to view it in the browser.
 
 ### Starting the Frontend
 
@@ -71,6 +71,7 @@ After the backend server is up and running, you can start the frontend applicati
 To run the automated tests for this system, execute:
 
 ```bash
+cd web-app/frontend
 yarn test
 ```
 
@@ -89,6 +90,6 @@ which has evolved during app development.
 - [TailwindCSS](https://tailwindcss.com/) - Used for styling the application.
 - [Jest](https://jestjs.io/) and [React Testing Library](https://testing-library.com/docs/react-testing-library/intro/) - Used for running tests to ensure code quality.
 
-## Authors
+## Author
 
-- \*_Adrian Zawadzki_ - _Initial work_ - [GitHub](https://github.com/Had3r)
+- _Adrian Zawadzki_ - [GitHub](https://github.com/Had3r)

@@ -8,3 +8,4 @@ export * from './Pagination';
 export * from './Breadcrumbs';
 export * from './SocialLink';
 export * from './Typography';
+export * from './ErrorAlert';
