@@ -12,7 +12,7 @@ describe('createAccount tests', () => {
     jest.restoreAllMocks();
   });
 
-  test('createAccount - checks console output after account creation', async () => {
+  test('createAccount - checks if account creation was successful', async () => {
     const newAccountData = {
       ownerId: 17,
       currency: 'EUR',
@@ -22,10 +22,12 @@ describe('createAccount tests', () => {
 
     (fetch as jest.Mock).mockResolvedValueOnce({
       ok: true,
+      json: () => Promise.resolve({ success: true }),
     });
 
-    await createAccount(newAccountData);
+    const response = await createAccount(newAccountData);
+    const responseData = await response.json();
 
-    expect(console.log).toHaveBeenCalledWith('Account created successfully');
+    expect(responseData.success).toBe(true);
   });
 });

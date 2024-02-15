@@ -4,8 +4,13 @@ describe('deleteAccount service', () => {
   const mockFetch = jest.fn();
   global.fetch = mockFetch;
 
+  beforeEach(() => {
+    jest.spyOn(console, 'error').mockImplementation(() => {});
+  });
+
   afterEach(() => {
     jest.resetAllMocks();
+    jest.restoreAllMocks();
   });
 
   it('should call fetch with the correct URL and method for deleting an account', async () => {
@@ -14,7 +19,6 @@ describe('deleteAccount service', () => {
     mockFetch.mockResolvedValueOnce({
       ok: true,
     });
-
     await deleteAccount(id);
 
     expect(mockFetch).toHaveBeenCalledWith(`${API_URL}/accounts/${id}`, {
