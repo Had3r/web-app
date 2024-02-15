@@ -1,160 +1,121 @@
 {
-  "accountTypes": [
-    "personal",
-    "savings",
-    "business"
-  ],
+  "accountTypes": ["personal", "savings", "business"],
   "accounts": [
     {
-      "id": "1",
-      "ownerId": 1,
-      "currency": "GBP",
-      "balance": 3001,
-      "type": "personal"
-    },
-    {
-      "id": "4",
-      "ownerId": 4,
-      "currency": "PLN",
-      "balance": 3000,
-      "type": "personal"
-    },
-    {
-      "id": "5",
-      "ownerId": 5,
-      "currency": "PLN",
-      "balance": 2900,
-      "type": "savings"
-    },
-    {
       "id": "7",
-      "ownerId": 7,
+      "ownerId": 1,
       "currency": "PLN",
       "balance": 3000,
       "type": "personal"
-    },
-    {
-      "id": "8",
-      "ownerId": 8,
-      "currency": "PLN",
-      "balance": 2900,
-      "type": "savings"
     },
     {
       "id": "9",
-      "ownerId": 9,
+      "ownerId": 2,
       "currency": "PLN",
       "balance": 3100,
       "type": "business"
     },
     {
       "id": "10",
-      "ownerId": 10,
+      "ownerId": 3,
       "currency": "USD",
       "balance": 3000,
       "type": "personal"
     },
     {
       "id": "11",
-      "ownerId": 11,
+      "ownerId": 4,
       "currency": "EUR",
       "balance": 2900,
       "type": "savings"
     },
     {
       "id": "12",
-      "ownerId": 12,
+      "ownerId": 5,
       "currency": "JPY",
       "balance": 3100,
       "type": "business"
     },
     {
       "id": "13",
-      "ownerId": 13,
+      "ownerId": 6,
       "currency": "CNY",
       "balance": 3000,
       "type": "personal"
     },
     {
       "id": "14",
-      "ownerId": 14,
+      "ownerId": 7,
       "currency": "INR",
       "balance": 2900,
       "type": "savings"
     },
     {
       "id": "15",
-      "ownerId": 15,
+      "ownerId": 8,
       "currency": "BRL",
       "balance": 3100,
       "type": "business"
     },
     {
       "id": "16",
-      "ownerId": 16,
+      "ownerId": 9,
       "currency": "RUB",
       "balance": 3000,
       "type": "personal"
     },
     {
-      "ownerId": 12312,
+      "id": "BmQiMG5",
+      "ownerId": 10,
       "currency": "3123",
       "balance": 3123,
-      "type": "savings",
-      "id": "BmQiMG5"
+      "type": "savings"
     },
     {
       "id": "41",
-      "ownerId": 32,
+      "ownerId": 11,
       "currency": "PLN",
       "balance": 3000,
       "type": "personal"
     },
     {
       "id": "42",
-      "ownerId": 123123,
+      "ownerId": 12,
       "currency": "PLN",
       "balance": 3000,
       "type": "personal"
     },
     {
       "id": "43",
-      "ownerId": 331,
+      "ownerId": 13,
       "currency": "PLN",
       "balance": 3000,
       "type": "personal"
     },
     {
       "id": "44",
-      "ownerId": 76,
-      "currency": "PLN",
-      "balance": 3000,
-      "type": "personal"
-    },
-    {
-      "id": "44",
-      "ownerId": 567,
+      "ownerId": 14,
       "currency": "PLN",
       "balance": 3000,
       "type": "personal"
     },
     {
       "id": "45",
-      "ownerId": 7657,
+      "ownerId": 15,
       "currency": "PLN",
       "balance": 3000,
       "type": "personal"
     },
     {
       "id": "46",
-      "ownerId": 77,
+      "ownerId": 16,
       "currency": "PLN",
       "balance": 3000,
       "type": "personal"
     },
     {
       "id": "434",
-      "ownerId": 456,
+      "ownerId": 17,
       "currency": "PLN",
       "balance": 3000,
       "type": "personal"
