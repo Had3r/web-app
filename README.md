@@ -75,13 +75,6 @@ cd web-app/frontend
 yarn test
 ```
 
-## Development Plan
-
-A detailed development plan for this application was outlined in Notion. You can access it [here](link).
-However, please note that this is a private workspace. To gain access, you will need to send a request.
-It's important to mention that the description in Notion may differ from the final implementation of the application,
-which has evolved during app development.
-
 ## Built With
 
 - [React](https://reactjs.org/) - The web framework used.

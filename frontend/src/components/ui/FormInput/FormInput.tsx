@@ -27,9 +27,11 @@ export const FormInput = ({
         value={value || ''}
         {...rest}
       >
-        <option value="" disabled={value === ''} hidden={value === ''}>
-          {placeholder}
-        </option>
+        {value === '' && (
+          <option value="" disabled hidden>
+            {placeholder}
+          </option>
+        )}
         {options.map((option, index) => (
           <option key={index} value={option}>
             {option}
