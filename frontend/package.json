@@ -21,14 +21,14 @@
     "web-vitals": "^2.1.0"
   },
   "scripts": {
-    "start": "react-scripts start",
-    "build": "react-scripts build",
+    "start": "yarn lint:fix && react-scripts start",
+    "build": "yarn lint:fix && react-scripts build",
     "test": "react-scripts test",
-    "eject": "react-scripts eject",
-    "lint": "eslint src --ext .js,.jsx,.ts,.tsx",
-    "format": "prettier --write \"src/**/*.{js,jsx,ts,tsx,css,scss,json}\"",
-    "start:lint": "yarn run lint && yarn run format && yarn start",
-    "build:lint": "yarn run lint && yarn build"
+    "lint:fix": "eslint src --ext .js,.jsx,.ts,.tsx --fix && prettier --write \"src/**/*.{js,jsx,ts,tsx,css,scss,json}\"",
+    "clean": "rm -rf ./build",
+    "audit": "yarn audit",
+    "outdated": "yarn outdated",
+    "eject": "react-scripts eject"
   },
   "lint-staged": {
     "*.{js,jsx,ts,tsx}": "eslint --cache --fix",

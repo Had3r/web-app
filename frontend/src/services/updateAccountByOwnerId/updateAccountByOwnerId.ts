@@ -26,12 +26,12 @@ export async function updateAccountByOwnerId(
     });
 
     if (!response.ok) {
-      throw new Error('Failed to update account');
+      return Promise.reject('Failed to update account');
     }
 
     console.log('Account updated successfully');
   } catch (error) {
     console.error('Error updating account:', error);
-    throw error;
+    return Promise.reject(error);
   }
 }

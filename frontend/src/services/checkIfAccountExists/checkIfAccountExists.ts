@@ -4,14 +4,14 @@ export async function checkIfAccountExists(ownerId: string): Promise<boolean> {
   try {
     const response = await fetch(`${API_URL}/accounts/${ownerId}`);
     if (response.ok) {
-      return true;
+      return Promise.resolve(true);
     } else if (response.status === 404) {
       return false;
     } else {
-      throw new Error('Failed to check account existence');
+      return Promise.reject({ message: 'Failed to check account existence' });
     }
   } catch (error) {
     console.error('Error checking account existence:', error);
-    throw error;
+    return Promise.reject({ message: 'Error checking account existence:' });
   }
 }

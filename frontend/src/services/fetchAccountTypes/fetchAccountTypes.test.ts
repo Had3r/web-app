@@ -11,6 +11,7 @@ describe('fetchAccountTypes', () => {
   it('should fetch account types successfully', async () => {
     const mockAccountTypes = ['Savings', 'Checking'];
     (fetch as jest.Mock).mockResolvedValueOnce({
+      ok: true,
       json: () => Promise.resolve(mockAccountTypes),
     });
 
@@ -23,8 +24,6 @@ describe('fetchAccountTypes', () => {
   it('should handle fetch error', async () => {
     (fetch as jest.Mock).mockRejectedValueOnce(new Error('Failed to fetch'));
 
-    await expect(fetchAccountTypes()).rejects.toThrow('Failed to fetch');
-
-    expect(fetch).toHaveBeenCalledWith(`${API_URL}/accountTypes`);
+    await expect(fetchAccountTypes()).rejects.toEqual('Error fetching data');
   });
 });

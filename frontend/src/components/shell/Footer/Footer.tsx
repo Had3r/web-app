@@ -11,16 +11,19 @@ export const Footer = () => (
           href="https://github.com/Had3r/web-app"
           icon={FaGithub}
           label="GitHub"
+          aria-label="Visit GitHub"
         />
         <SocialLink
           href="https://www.linkedin.com/in/adrian-zawadzki/"
           icon={FaLinkedin}
           label="LinkedIn"
+          aria-label="Visit LinkedIn"
         />
         <SocialLink
           href="mailto:adrian.zawadzki1624@gmail.com"
           icon={FaEnvelope}
           label="Email"
+          aria-label="Send an email"
         />
       </nav>
     </div>

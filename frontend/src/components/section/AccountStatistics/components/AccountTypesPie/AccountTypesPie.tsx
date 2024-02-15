@@ -1,27 +1,12 @@
-import React, { useEffect, useState } from 'react';
+import { useEffect, useState } from 'react';
 
 import { Pie } from 'react-chartjs-2';
 
-import { Account } from '../../AccountStatistics';
+import { backgroundColors, borderColors } from './AccountTypesPie.styles';
+import type { ChartData } from '../../AccountStatistics.type';
+import type { AccountStatisticsProps } from '../../AccountStatistics.type';
 
-interface Props {
-  accounts: Account[];
-}
-
-interface ChartData {
-  labels: string[];
-  datasets: [
-    {
-      label: string;
-      data: number[];
-      backgroundColor: string[];
-      borderColor: string[];
-      borderWidth: number;
-    },
-  ];
-}
-
-export const AccountTypesPie: React.FC<Props> = ({ accounts }) => {
+export const AccountTypesPie = ({ accounts }: AccountStatisticsProps) => {
   const [accountTypes, setAccountTypes] = useState<ChartData>({
     labels: [],
     datasets: [
@@ -55,16 +40,8 @@ export const AccountTypesPie: React.FC<Props> = ({ accounts }) => {
         {
           label: 'Number of Accounts by Type',
           data: typesCounts,
-          backgroundColor: [
-            'rgba(255, 99, 132, 0.2)',
-            'rgba(54, 162, 235, 0.2)',
-            'rgba(255, 206, 86, 0.2)',
-          ],
-          borderColor: [
-            'rgba(255,99,132,1)',
-            'rgba(54, 162, 235, 1)',
-            'rgba(255, 206, 86, 1)',
-          ],
+          backgroundColor: backgroundColors,
+          borderColor: borderColors,
           borderWidth: 1,
         },
       ],

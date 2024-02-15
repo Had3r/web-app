@@ -8,4 +8,5 @@ export interface StatisticCardProps {
   children?: ReactNode;
   className?: string;
   iconBgClass?: string;
+  iconAlt?: string;
 }

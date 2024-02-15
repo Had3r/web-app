@@ -7,7 +7,7 @@ export const Container = ({
   component,
   className,
 }: ContainerProps) => {
-  const DynamicComponent = component ?? 'section';
+  const DynamicComponent = component ?? 'div';
 
   return (
     <DynamicComponent

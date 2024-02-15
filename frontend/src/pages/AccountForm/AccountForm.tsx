@@ -6,6 +6,7 @@ import {
   Loader,
   Breadcrumbs,
   Typography,
+  ErrorAlert,
 } from 'components/ui';
 import { useNavigate } from 'react-router-dom';
 import { useParams } from 'react-router-dom';
@@ -37,6 +38,8 @@ export const AccountForm = () => {
   const [serverMessage, setServerMessage] = useState('');
   const [isLoading, setIsLoading] = useState(false);
   const [accountTypes, setAccountTypes] = useState<string[]>([]);
+  const [failedToFetchDataFromBackend, setFailedToFetchDataFromBackend] =
+    useState(false);
 
   const resetForm = () => {
     setFormData({
@@ -71,8 +74,16 @@ export const AccountForm = () => {
 
   useEffect(() => {
     const initFetchAccountTypes = async () => {
-      const data = await fetchAccountTypes();
-      setAccountTypes(data);
+      try {
+        const data = await fetchAccountTypes();
+        if (data && data.length > 0) {
+          setAccountTypes(data);
+        } else {
+          setFailedToFetchDataFromBackend(true);
+        }
+      } catch (error) {
+        setFailedToFetchDataFromBackend(true);
+      }
     };
 
     initFetchAccountTypes();
@@ -180,6 +191,12 @@ export const AccountForm = () => {
         { label: 'Home', link: '/' },
         { label: 'Create Account', link: '/create-account' },
       ];
+
+  if (failedToFetchDataFromBackend) {
+    return (
+      <ErrorAlert message="Unable to load data from the backend. Please try again later." />
+    );
+  }
 
   return (
     <div className="max-w-xl mx-auto w-full flex flex-col">
